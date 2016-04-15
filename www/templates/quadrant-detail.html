@@ -1,0 +1,20 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view view-title="{{quadrant.name}}" class="image">
+  <ion-content class="padding">
+    <!--<img ng-src="{{quadrant.img}}" style="width: 64px; height: 64px">-->
+    <h2 class="center">
+      {{quadrant.description}}
+    </h2>
+    <label class="item item-input center">
+    <input type="text" placeholder="Enter a goal for the quadrant" class="transparent">
+  </label>
+    <button class="button button-clear button-positive">
+      Clear Button
+    </button>
+  </ion-content>
+</ion-view>
