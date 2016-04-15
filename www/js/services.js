@@ -85,4 +85,16 @@ angular.module('starter.services', [])
       return null;
     }
   } 
+})
+.factory('Goals',function() {
+  var goals = [];
+  
+  return{
+    all: function() {
+      return goals;
+    },
+    add: function(goal){
+      goals.push(goal);
+    }
+  } 
 });

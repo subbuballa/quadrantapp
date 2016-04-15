@@ -3,8 +3,37 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope, Quadrants) {
   $scope.quadrants = Quadrants.all();
 })
-.controller('QuadrantDetailCtrl',function($scope, $stateParams, Quadrants){
-  $scope.quadrant = Quadrants.get($stateParams.quadrantId);
+.controller('QuadrantDetailCtrl',function($scope, $stateParams, Quadrants, Goals){
+  var quadrant = Quadrants.get($stateParams.quadrantId);
+  var goalDetails = {
+    quadrant: quadrant,
+    isUrgent: false,
+    isImportant: false,
+    description: ''
+  };
+  
+  $scope.goalDetails = goalDetails;
+  
+  $scope.addGoal = function(goalDetails) {
+    var goal = {
+      quadrantId: goalDetails.quadrant.id,
+      quadrantName: goalDetails.quadrant.name,
+      quadrantDesc: goalDetails.quadrant.description,
+      isUrgent: goalDetails.isUrgent,
+      isImportant: goalDetails.isImportant,
+      description: goalDetails.description
+    }
+    Goals.add(goal);
+    $scope.goalDetails ={
+      quadrant:goalDetails.quadrant,
+      isUrgent: false,
+      isImportant: false,
+      description: ''
+    };
+  }
+})
+.controller('MyQuadrantCtrl', function($scope, Goals) {
+  $scope.goals = Goals.all();
 })
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called

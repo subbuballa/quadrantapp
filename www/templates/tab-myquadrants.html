@@ -1,0 +1,11 @@
+<ion-view view-title="My Quadrants">
+    <ion-content>
+       <ion-list>
+            <ion-item class="item-remove-animate" ng-repeat="goal in goals" type="item-text-wrap" href="#">
+                <h2>{{goal.quadrantName}} - {{goal.description}}</h2>
+                <span ng-show="goal.isUrgent"><i class="icon ion-information-circled"></i> Urgent</span>
+                <span ng-show="goal.isImportant"><i class="icon ion-information-circled"></i> Important</span>
+            </ion-item>
+    </ion-list>
+    </ion-content>
+</ion-view>

@@ -58,6 +58,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
+  .state('tab.myquadrants', {
+      url: '/myquadrants',
+      views: {
+        'tab-myquadrants': {
+          templateUrl: 'templates/tab-myquadrants.html',
+          controller: 'MyQuadrantCtrl'
+        }
+      }
+    })
   .state('tab.chats', {
       url: '/chats',
       views: {

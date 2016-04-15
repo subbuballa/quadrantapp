@@ -4,19 +4,27 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view view-title="{{quadrant.name}}">
+<ion-view view-title="Add new {{goalDetails.quadrant.name}} goal">
   <ion-content class="padding">
     <!--<img ng-src="{{quadrant.img}}" style="width: 64px; height: 64px">-->
     <div class="center">
-      <h2>
+      <!--<h3>
         {{quadrant.description}}
-      </h2>
-      <label class="item item-input">
-        <input type="text" placeholder="Enter a goal for the quadrant" class="transparent">
-      </label>
-      <button class="button button-clear button-positive center">
-        Clear Button
-      </button>
+      </h3>-->
+      <div class="margin-top">
+        <label class="item item-input">
+          <input type="text" placeholder="Enter a goal for the quadrant" class="transparent" ng-model="goalDetails.description">
+        </label>
+        <div>
+          <div class="row">
+            <div class="col"><ion-checkbox ng-model="goalDetails.isUrgent">Urgent</ion-checkbox></div>
+            <div class="col"><ion-checkbox ng-model="goalDetails.isImportant">Important</ion-checkbox></div>
+          </div>
+        </div>
+        <button class="button button-clear button-positive center" ng-click="addGoal(goalDetails)">
+          Add Goal
+        </button>
+      </div>
     </div>
   </ion-content>
 </ion-view>
