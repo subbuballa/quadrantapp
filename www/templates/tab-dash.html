@@ -1,4 +1,4 @@
-<ion-view view-title="Quadrants">
+<!--<ion-view view-title="Quadrants">
   <ion-content>
     <div class="list">
       <a ng-repeat="quadrant in quadrants" class="item item-thumbnail-left" href="#/tab/quadrants/{{quadrant.id}}">
@@ -8,4 +8,17 @@
       </a>
     </div> 
   </ion-content>
+</ion-view>-->
+<ion-view view-title="Quadrants">
+    <ion-content>
+        <div class="list card">
+            <a href="#/tab/quadrants/{{quadrant.id}}" class="item item-image" ng-repeat="quadrant in quadrants" type="item-text-wrap">
+                <div class="module mid">
+                    <img ng-src="{{quadrant.img}}">
+                    <h2>{{quadrant.name}}</h2>
+                    <p>{{quadrant.description}}</p>
+                </div>
+            </a>
+        </div>
+    </ion-content>
 </ion-view>

@@ -13,7 +13,43 @@ input[type="text"]{
 }
 
 .center {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+    text-align: center;
+}
+
+.module {
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.9),
+      rgba(0, 0, 0, 0.9)
+    ),
+    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/skyscrapers.jpg);
+  background-size: cover;
+  height: 200px;
+  margin: 10px 0 0 10px;
+  position: relative;
+  float: left;
+}
+
+.mid h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  color: white;
+  text-transform: uppercase;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 2rem;
+  transform: translate(-50%, -50%);
+}
+.mid p {
+  font-weight: 900;
+  color: #333333;
+  text-transform: uppercase;
+  margin: 0;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  font-size: 1rem;
+  transform: translate(-50%, -50%);
 }
