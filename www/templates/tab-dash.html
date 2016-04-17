@@ -1,5 +1,5 @@
-<!--<ion-view view-title="Quadrants">
-  <ion-content>
+<!--<ion-view view-title="Quadrants" class="view-with-bg">
+  <ion-content class="view-content">
     <div class="list">
       <a ng-repeat="quadrant in quadrants" class="item item-thumbnail-left" href="#/tab/quadrants/{{quadrant.id}}">
         <img ng-src="{{quadrant.img}}">
@@ -9,11 +9,11 @@
     </div> 
   </ion-content>
 </ion-view>-->
-<ion-view view-title="Quadrants">
+<!--<ion-view view-title="Quadrants">
     <ion-content>
         <div class="list card">
             <a href="#/tab/quadrants/{{quadrant.id}}" class="item item-image" ng-repeat="quadrant in quadrants" type="item-text-wrap">
-                <div class="module mid">
+                <div class="module mid margin-top positive">
                     <img ng-src="{{quadrant.img}}">
                     <h2>{{quadrant.name}}</h2>
                     <p>{{quadrant.description}}</p>
@@ -21,4 +21,48 @@
             </a>
         </div>
     </ion-content>
+</ion-view>-->
+<ion-view view-title="Quadrants" class="">
+  <ion-content class="view-content">
+       <div class="item item-divider"> 
+           Choose Quadrants
+        </div>
+        <div class="quadrant-panel">
+            <div class="row">
+                <div class="col center">
+                    <a href="#/tab/quadrants/1" class="button button-icon balanced">
+                        <i class="ion-ios-person-outline larger"></i>
+                        Personal
+                    </a>
+                </div>
+                <div class="col center">
+                    <a href="#/tab/quadrants/2" class="button button-icon balanced">
+                        <i class="ion-laptop larger"></i>
+                        Work
+                    </a>
+                </div>
+                <div class="col center">
+                    <a href="#/tab/quadrants/3" class="button button-icon balanced">
+                        <i class="ion-ios-home-outline larger"></i>
+                        Home   
+                    </a>  
+                </div>
+            </div>
+            <div class="row">
+                <div class="col center">
+                    <a href="#/tab/quadrants/4" class="button button-icon balanced">
+                        <i class="fa fa-child fa-3x icon"></i>
+                        Kid
+                    </a>
+                </div>
+                <div class="col center">
+                    
+                </div>
+                <div class="col center">
+                    
+                </div>
+            </div>
+        </div>
+    
+  </ion-content>
 </ion-view>

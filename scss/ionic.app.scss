@@ -18,7 +18,46 @@ $dark:                            #444 !default;
 // $positive:                        pink !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
+$fa-font-path:        "../lib/font-awesome/fonts" !default;
+
+$balanced: #213D6F;
+
+.view-with-bg{
+  .view-content {
+    background-image: url('../img/quadrantbg.jpg');
+    background-size: cover;
+  }
+}
+
+.view-with-bg{
+  .pane {
+    background-image: url('../img/quadrantbg.jpg') !important;
+    background-size: cover !important;
+  }
+}
+
+.larger{
+    font-size: 50px;
+}
+
+.quadrant-panel {
+    .button{
+        font-size: 15px;
+        line-height: 10px; // Add
+    }
+    .button-icon {
+        .icon{
+            display: block;
+            font-size: 50px;
+            margin-bottom: 3px !important;
+        }
+    }
+}
+
 //trdy
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+@import "www/lib/font-awesome/scss/font-awesome";
 
+
+//test

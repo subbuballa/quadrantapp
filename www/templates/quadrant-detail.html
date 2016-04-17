@@ -4,9 +4,12 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view view-title="Add new {{goalDetails.quadrant.name}} goal">
-  <ion-content class="padding">
+<ion-view view-title="Add new goal">
+  <ion-content class="padding view-content">
     <!--<img ng-src="{{quadrant.img}}" style="width: 64px; height: 64px">-->
+    <div class="item item-divider"> 
+        {{goalDetails.quadrant.name}}
+      </div>
     <div class="center">
       <!--<h3>
         {{quadrant.description}}
@@ -21,7 +24,7 @@
             <div class="col"><ion-checkbox ng-model="goalDetails.isImportant">Important</ion-checkbox></div>
           </div>
         </div>
-        <button class="button button-clear button-positive center" ng-click="addGoal(goalDetails)">
+        <button class="button button-clear button-balanced center" ng-click="addGoal(goalDetails)">
           Add Goal
         </button>
       </div>

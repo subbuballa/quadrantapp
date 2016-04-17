@@ -17,7 +17,7 @@ input[type="text"]{
 }
 
 .margin-top{
-  top:20px;
+  top:5px;
 }
 
 .module {
@@ -28,8 +28,8 @@ input[type="text"]{
     ),
     url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/skyscrapers.jpg);
   background-size: cover;
-  height: 200px;
-  margin: 10px 0 0 10px;
+  /*height: 200px;
+  margin: 10px 0 0 10px;*/
   position: relative;
   float: left;
 }
@@ -57,3 +57,4 @@ input[type="text"]{
   font-size: 1rem;
   transform: translate(-50%, -50%);
 }
+
