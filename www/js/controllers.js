@@ -36,6 +36,17 @@ angular.module('starter.controllers', [])
 })
 .controller('MyQuadrantCtrl', function($scope, Goals) {
   $scope.goals = Goals.all();
+  
+  $scope.getCssClass = function(goal) {
+    var isUrgent = goal.isUrgent;
+    var isImportant = goal.isImportant;
+    console.log(goal  );
+    if(isUrgent&&isImportant) return 'quadrant1';
+    if(isUrgent&&!isImportant) return 'quadrant2';
+    if(!isUrgent&&isImportant) return 'quadrant3';
+    if(!isUrgent&&!isImportant) return 'quadrant4';
+    return '';
+  }
 })
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
