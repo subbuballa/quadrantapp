@@ -95,6 +95,15 @@ angular.module('starter.services', [])
     },
     add: function(goal){
       goals.push(goal);
+    },
+    get: function(quadrantId){
+      var goalsPerQuadrant = [];
+      for (var i = 0; i < goals.length; i++) {
+        if (goals[i].quadrantId === parseInt(quadrantId) && goals[i].isUrgent) {
+          goalsPerQuadrant.push(goals[i]);
+        }
+      }
+      return goalsPerQuadrant;
     }
   } 
 });

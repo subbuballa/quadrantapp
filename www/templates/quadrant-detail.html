@@ -29,5 +29,15 @@
         </button>
       </div>
     </div>
+    <div class="item item-divider"> 
+           Urgent goals
+      </div>
+      <ion-list>
+      <ion-item class="item-remove-animate" ng-repeat="goal in goalsByQuadrant" type="item-text-wrap" href="#">
+                <h2 class="balanced">{{goal.quadrantName}} - {{goal.description}}</h2>
+                <span ng-show="goal.isUrgent" class="balanced"><i class="icon ion-information-circled balanced"></i> Urgent</span>
+                <span ng-show="goal.isImportant" class="balanced"><i class="icon ion-information-circled balanced"></i> Important</span>
+            </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>

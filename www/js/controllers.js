@@ -13,6 +13,7 @@ angular.module('starter.controllers', [])
   };
   
   $scope.goalDetails = goalDetails;
+  $scope.goalsByQuadrant = Goals.get($stateParams.quadrantId);
   
   $scope.addGoal = function(goalDetails) {
     var goal = {
@@ -30,6 +31,7 @@ angular.module('starter.controllers', [])
       isImportant: false,
       description: ''
     };
+    $scope.goalsByQuadrant = Goals.get($stateParams.quadrantId);
   }
 })
 .controller('MyQuadrantCtrl', function($scope, Goals) {
