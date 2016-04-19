@@ -57,16 +57,3 @@ input[type="text"]{
   font-size: 1rem;
   transform: translate(-50%, -50%);
 }
-
-.quadrant1{
-    color: red;
-}
-.quadrant2{
-    color: orangered;
-}
-.quadrant3{
-    color: darkorange;
-}
-.quadrant4{
-    color: darkgrey;
-}

@@ -26,6 +26,9 @@ $dark:                            #444 !default;
 .larger {
   font-size: 50px; }
 
+.medium {
+  font-size: 25px; }
+
 .quadrant-panel .button {
   font-size: 15px;
   line-height: 10px; }
@@ -34,6 +37,24 @@ $dark:                            #444 !default;
   display: block;
   font-size: 50px;
   margin-bottom: 3px !important; }
+
+.quadrant1 {
+  color: red; }
+
+.quadrant2 {
+  color: orangered; }
+
+.quadrant3 {
+  color: darkorange; }
+
+.quadrant4 {
+  color: darkgrey; }
+
+.right {
+  float: right; }
+
+.padding-5 {
+  margin: 5px; }
 
 /*!
   Ionicons, v2.0.1

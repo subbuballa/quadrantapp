@@ -1,34 +1,19 @@
-<!--<ion-view view-title="Quadrants" class="view-with-bg">
-  <ion-content class="view-content">
-    <div class="list">
-      <a ng-repeat="quadrant in quadrants" class="item item-thumbnail-left" href="#/tab/quadrants/{{quadrant.id}}">
-        <img ng-src="{{quadrant.img}}">
-        <h2>{{quadrant.name}}</h2>
-        <p>{{quadrant.description}}</p>
-      </a>
-    </div> 
-  </ion-content>
-</ion-view>-->
-<!--<ion-view view-title="Quadrants">
-    <ion-content>
-        <div class="list card">
-            <a href="#/tab/quadrants/{{quadrant.id}}" class="item item-image" ng-repeat="quadrant in quadrants" type="item-text-wrap">
-                <div class="module mid margin-top positive">
-                    <img ng-src="{{quadrant.img}}">
-                    <h2>{{quadrant.name}}</h2>
-                    <p>{{quadrant.description}}</p>
-                </div>
-            </a>
-        </div>
-    </ion-content>
-</ion-view>-->
 <ion-view view-title="Quadrants" class="">
   <ion-content class="view-content">
        <div class="item item-divider"> 
            My Quadrants
+        <i class="ion-plus-circled assertive pull-right medium" ng-click="modal.show()"></i>
         </div>
         <div class="quadrant-panel">
-            <div class="row">
+            <div class="row" ng-repeat="quadrantMatrix in quadrants">
+                <div class="col col-33 center" ng-repeat="quadrant in quadrantMatrix">
+                    <a href="#/tab/quadrants/{{quadrant.id}}" class="button button-icon balanced">
+                        <i class="fa fa-3x icon" ng-class="quadrant.icon"></i>
+                        {{quadrant.name}}
+                    </a>
+                </div>
+            </div>
+            <!--<div class="row">
                 <div class="col col-33 center">
                     <a href="#/tab/quadrants/1" class="button button-icon balanced">
                         <i class="fa fa-user fa-3x icon"></i>
@@ -43,7 +28,7 @@
                 </div>
                 <div class="col col-33 center">
                     <a href="#/tab/quadrants/3" class="button button-icon balanced">
-                        <i class="fa  fa-home fa-3x icon"></i>
+                        <i class="fa fa-home fa-3x icon"></i>
                         Home   
                     </a>  
                 </div>
@@ -61,7 +46,7 @@
                 <div class="col center">
                     
                 </div>
-            </div>
+            </div>-->
         </div>
     
   </ion-content>

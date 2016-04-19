@@ -40,6 +40,10 @@ $balanced: #213D6F;
     font-size: 50px;
 }
 
+.medium{
+    font-size: 25px;
+}
+
 .quadrant-panel {
     .button{
         font-size: 15px;
@@ -65,7 +69,12 @@ $balanced: #213D6F;
 .quadrant4{
     color: darkgrey;
 }
-
+.right{
+    float: right;
+}
+.padding-5{
+    margin: 5px;
+}
 
 //trdy
 // Include all of Ionic

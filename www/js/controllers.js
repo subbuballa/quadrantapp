@@ -1,9 +1,38 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, Quadrants) {
-  $scope.quadrants = Quadrants.all();
+.controller('DashCtrl', function($scope, $ionicModal, $filter, Quadrants) {
+  $ionicModal.fromTemplateUrl('templates/availableQuadrants.html',{
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal){
+    $scope.modal = modal;
+  });
+  var selectedQuadrants = Quadrants.all();
+  var quadrantMatrix = $filter('columnsInGrid')(selectedQuadrants,3);
+  $scope.quadrants = quadrantMatrix;
+  $scope.allQuadrants = Quadrants.all();
 })
-.controller('QuadrantDetailCtrl',function($scope, $stateParams, Quadrants, Goals){
+.controller('QuadrantDetailCtrl',function($scope, $stateParams, $filter, $ionicModal, Quadrants, Goals, PrioritiesList){
+  
+  $ionicModal.fromTemplateUrl('templates/addCustomPriority.html',{
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal){
+    $scope.modal = modal;
+  });
+  $scope.priority = {};
+  
+   $scope.createContact = function(u) {
+     var priority = {
+          id: 11,
+          text: u.custom,
+          type: 2
+        }
+    PrioritiesList.add(priority);
+    $scope.modal.hide();
+    refreshProrityList();
+  };
+  
   var quadrant = Quadrants.get($stateParams.quadrantId);
   var goalDetails = {
     quadrant: quadrant,
@@ -14,6 +43,16 @@ angular.module('starter.controllers', [])
   
   $scope.goalDetails = goalDetails;
   $scope.goalsByQuadrant = Goals.get($stateParams.quadrantId);
+  
+  
+  function refreshProrityList() {
+    var pList = PrioritiesList.all();
+    var filteredList = $filter('columnsInGrid')(pList,2);
+    $scope.priorityList = filteredList;
+    $scope.selectedPriority = 0 ;
+  }
+  
+  refreshProrityList();
   
   $scope.addGoal = function(goalDetails) {
     var goal = {
@@ -32,6 +71,7 @@ angular.module('starter.controllers', [])
       description: ''
     };
     $scope.goalsByQuadrant = Goals.get($stateParams.quadrantId);
+      $scope.selectedPriority = 0 ;
   }
 })
 .controller('MyQuadrantCtrl', function($scope, Goals) {
@@ -71,4 +111,40 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     showHistory: true
   };
+})
+.filter('columnsInGrid',function(){
+  function listToMatrix(list, elementsInSubArray){
+    var matrix = [],i,k;
+    for(i=0,k=-1;i<list.length;i++){
+      if(i % elementsInSubArray === 0){
+        k++;
+        matrix[k] = [];
+      }
+      matrix[k].push(list[i]);
+    }
+    return matrix;
+  }
+  
+  return function(list,elementsInSubArray){
+    return listToMatrix(list,elementsInSubArray);
+  };
+})
+.filter('listToMatrix', function() {
+    function listToMatrix(list, elementsPerSubArray) {
+        var matrix = [], i, k;
+
+        for (i = 0, k = -1; i < list.length; i++) {
+            if (i % elementsPerSubArray === 0) {
+                k++;
+                matrix[k] = [];
+            }
+
+            matrix[k].push(list[i]);
+        }
+
+        return matrix;
+    }
+    return function(list, elementsPerSubArray) {
+        return listToMatrix(list, elementsPerSubArray);
+    };
 });

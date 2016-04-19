@@ -30,36 +30,21 @@
         <div>
            <div class="item item-divider margin-top"> 
               Set Priority
+              <i class="ion-plus-circled assertive pull-right medium" ng-click="modal.show()"></i>
            </div>
-          <div class="row">
-            <div class="col"><ion-checkbox ng-model="goalDetails.oneDay">1 Day</ion-checkbox></div>
-            <div class="col"><ion-checkbox ng-model="goalDetails.twoDays">2 Days</ion-checkbox></div>
-          </div>
-          <div class="row">
-            <div class="col"><ion-checkbox ng-model="goalDetails.oneWeek">1 Week</ion-checkbox></div>
-            <div class="col"><ion-checkbox ng-model="goalDetails.oneMonth">1 Month</ion-checkbox></div>
-          </div>
-           <div class="row">
-            <div class="col"><ion-checkbox ng-model="goalDetails.sixMonths">6 Months</ion-checkbox></div>
-            <div class="col"><ion-checkbox ng-model="goalDetails.oneYear">1 Year</ion-checkbox></div>
-          </div>
-          <div class="row">
-            <div class="col"><ion-checkbox ng-model="goalDetails.threeYears">3 years</ion-checkbox></div>
-            <div class="col"><ion-checkbox ng-model="goalDetails.fiveYears">5 Years</ion-checkbox></div>
-          </div>
-          <div class="row">
-            <div class="col"><ion-checkbox ng-model="goalDetails.tenYears">10 years</ion-checkbox></div>
-            <div class="col"><ion-checkbox ng-model="goalDetails.twentyYears">20 Years</ion-checkbox></div>
-          </div>
+           <div class="row" ng-repeat="priorities in priorityList">
+            <div class="col" ng-repeat="priority in priorities">
+              <ion-radio ng-model="selectedPriority" ng-value="priority.id">{{priority.text}}</ion-radio>
+           </div>
         </div>
         <div  class="center">
-        <button class="button button-clear button-balanced center" ng-click="addGoal(goalDetails)">
+        <button class="button button-clear button-assertive center" ng-click="addGoal(goalDetails)">
           Add Goal
         </button>
         <div>
       </div>
     </div>
-    <div class="item item-divider"> 
+    <!--<div class="item item-divider"> 
            Urgent goals
       </div>
       <ion-list>
@@ -68,6 +53,6 @@
                 <span ng-show="goal.isUrgent" class="balanced"><i class="icon ion-information-circled balanced"></i> Urgent</span>
                 <span ng-show="goal.isImportant" class="balanced"><i class="icon ion-information-circled balanced"></i> Important</span>
             </ion-item>
-    </ion-list>
+    </ion-list>-->
   </ion-content>
 </ion-view>
