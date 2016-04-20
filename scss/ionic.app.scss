@@ -90,6 +90,10 @@ $light: #fff;
     margin-left: 20px;
 }
 
+svg{
+    display: block;
+    margin: auto;
+}
 //trdy
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";

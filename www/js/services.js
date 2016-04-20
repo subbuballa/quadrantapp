@@ -26,9 +26,19 @@ angular.module('starter.services', [])
     icon: 'fa-child'
   }];
   
+  function setPersistedData() {
+      window.localStorage.setItem('quadrants',JSON.stringify(quadrants));
+  }
+  setPersistedData();
+  
+  function getPersistedData() {
+      var quadrantJson = window.localStorage.getItem('quadrants');
+      return JSON.parse(quadrantJson);
+  }
+  
   return{
     all: function() {
-      return quadrants;
+      return getPersistedData();
     },
     get: function(quadrantId){
       for (var i = 0; i < quadrants.length; i++) {
@@ -104,15 +114,29 @@ angular.module('starter.services', [])
 .factory('Goals',function() {
   var goals = [];
   
+  function setPersistedData(goals) {
+      window.localStorage.setItem('goals',JSON.stringify(goals));
+  }
+  
+  function getPersistedData() {
+      var goalJson = window.localStorage.getItem('goals');
+      if(goalJson === 'undefined') return [];
+      goals = JSON.parse(goalJson);
+  }
+  
+  //getPersistedData();
+  
   return{
     all: function() {
       return goals;
     },
     add: function(goal){
       goals.push(goal);
+      //setPersistedData(goals);
     },
     get: function(quadrantId){
       var goalsPerQuadrant = [];
+      //var persistedGoals = getPersistedData();
       for (var i = 0; i < goals.length; i++) {
         if (goals[i].quadrantId === parseInt(quadrantId) && goals[i].isUrgent) {
           goalsPerQuadrant.push(goals[i]);
@@ -121,6 +145,7 @@ angular.module('starter.services', [])
       return goalsPerQuadrant;
     },
     hasGoals: function() {
+      //var persistedGoals = getPersistedData();
       return goals.length > 0;
     }
   } 

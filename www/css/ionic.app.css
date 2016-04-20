@@ -66,6 +66,10 @@ $dark:                            #444 !default;
   margin-top: 20px;
   margin-left: 20px; }
 
+svg {
+  display: block;
+  margin: auto; }
+
 /*!
   Ionicons, v2.0.1
   Created by Ben Sperry for the Ionic Framework, http://ionicons.com/

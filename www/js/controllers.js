@@ -1,6 +1,51 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, $ionicModal, $filter, Quadrants) {
+.controller('DashCtrl', function($scope, Quadrants) {
+  $scope.options = {  
+  chart: {
+    type: 'pieChart',
+    height: 200,
+    x: function(d){return d.key;},
+    y: function(d){return d.y;},
+    showLabels: false,
+    duration: 500,
+    labelThreshold: 0.01,
+    labelSunbeamLayout: true,
+    width: 200,
+    title: "Personal",
+    donut: true,
+    tooltips: false,
+    showLegend: false,
+    legend: {
+      margin: {
+        top: 5,
+        right: 0,
+        bottom: 5,
+        left: 0
+      }
+    }
+  }
+};
+$scope.data = [  
+  {
+    key: "urgent & important",
+    y: 4
+  },
+  {
+    key: "urgent & not-important",
+    y: 2
+  },
+  {
+    key: "important & not urgent",
+    y: 2
+  },
+  {
+    key: "Not urgent & not important",
+    y: 0
+  }
+];
+})
+.controller('MyQuadrantCtrl', function($scope, $ionicModal, $filter, Quadrants) {
   $ionicModal.fromTemplateUrl('templates/availableQuadrants.html',{
     scope: $scope,
     animation: 'slide-in-up'
@@ -43,7 +88,7 @@ angular.module('starter.controllers', [])
   };
   
   $scope.goalDetails = goalDetails;
-  $scope.goalsByQuadrant = Goals.get($stateParams.quadrantId);
+  //$scope.goalsByQuadrant = Goals.get($stateParams.quadrantId);
   
   
   function refreshProrityList() {
@@ -74,7 +119,7 @@ angular.module('starter.controllers', [])
       description: '',
       selectedPriority: 0
     };
-    $scope.goalsByQuadrant = Goals.get($stateParams.quadrantId);
+    //$scope.goalsByQuadrant = Goals.get($stateParams.quadrantId);
     $scope.selectedPriority = -1;
   }
   
@@ -84,16 +129,17 @@ angular.module('starter.controllers', [])
     return false;
   }
 })
-.controller('MyQuadrantCtrl', function($scope, Goals) {
+.controller('GoalsCtrl', function($scope, Goals) {
   var goals = Goals.all();
-  $scope.goals = goals;
+  $scope.getGoals = function(){
+    return Goals.all();
+  }
   $scope.hasGoals = function(){
     return Goals.hasGoals();
   };
   $scope.getCssClass = function(goal) {
     var isUrgent = goal.isUrgent;
     var isImportant = goal.isImportant;
-    console.log(goal  );
     if(isUrgent&&isImportant) return 'quadrant1';
     if(isUrgent&&!isImportant) return 'quadrant2';
     if(!isUrgent&&isImportant) return 'quadrant3';
