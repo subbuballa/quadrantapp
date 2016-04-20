@@ -38,7 +38,8 @@ angular.module('starter.controllers', [])
     quadrant: quadrant,
     isUrgent: false,
     isImportant: false,
-    description: ''
+    description: '',
+    selectedPriority: -1
   };
   
   $scope.goalDetails = goalDetails;
@@ -49,7 +50,8 @@ angular.module('starter.controllers', [])
     var pList = PrioritiesList.all();
     var filteredList = $filter('columnsInGrid')(pList,2);
     $scope.priorityList = filteredList;
-    $scope.selectedPriority = 0 ;
+    $scope.selectedPriority = 0;
+    $scope.priorities = PrioritiesList.all();
   }
   
   refreshProrityList();
@@ -61,22 +63,33 @@ angular.module('starter.controllers', [])
       quadrantDesc: goalDetails.quadrant.description,
       isUrgent: goalDetails.isUrgent,
       isImportant: goalDetails.isImportant,
-      description: goalDetails.description
+      description: goalDetails.description,
+      priority: goalDetails.selectedPriority
     }
     Goals.add(goal);
     $scope.goalDetails ={
       quadrant:goalDetails.quadrant,
       isUrgent: false,
       isImportant: false,
-      description: ''
+      description: '',
+      selectedPriority: 0
     };
     $scope.goalsByQuadrant = Goals.get($stateParams.quadrantId);
-      $scope.selectedPriority = 0 ;
+    $scope.selectedPriority = -1;
+  }
+  
+  $scope.isDisabled = function(goalDetails) {
+    if(goalDetails.description == '') return true;
+    if(goalDetails.selectedPriority <= 0) return true;
+    return false;
   }
 })
 .controller('MyQuadrantCtrl', function($scope, Goals) {
-  $scope.goals = Goals.all();
-  
+  var goals = Goals.all();
+  $scope.goals = goals;
+  $scope.hasGoals = function(){
+    return Goals.hasGoals();
+  };
   $scope.getCssClass = function(goal) {
     var isUrgent = goal.isUrgent;
     var isImportant = goal.isImportant;

@@ -1,58 +1,47 @@
-<!--
-  This template loads for the 'tab.friend-detail' state (app.js)
-  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
-  The FriendsCtrl pulls data from the Friends service (service.js)
-  The Friends service returns an array of friend data
--->
 <ion-view view-title="Add new goal">
+  <ion-nav-buttons side="right">
+      <button class="button button-clear button-light center" ng-disabled="isDisabled(goalDetails)" ng-click="addGoal(goalDetails)">
+          Add
+        </button>
+    </ion-nav-buttons>
   <ion-content class="padding view-content">
-    <!--<img ng-src="{{quadrant.img}}" style="width: 64px; height: 64px">-->
     <div class="item item-divider"> 
         {{goalDetails.quadrant.name}}
-      </div>
+    </div>
     <div>
-      <!--<h3>
-        {{quadrant.description}}
-      </h3>-->
       <div class="margin-top">
         <label class="item item-input">
           <input type="text" placeholder="Enter a goal for the quadrant" class="transparent" ng-model="goalDetails.description">
         </label>
+        <div>
          <div class="item item-divider margin-top"> 
            Set Urgency
         </div>
-        <div>
-          <div class="row">
-            <div class="col"><ion-checkbox ng-model="goalDetails.isUrgent">Urgent</ion-checkbox></div>
-            <div class="col"><ion-checkbox ng-model="goalDetails.isImportant">Important</ion-checkbox></div>
+        <div class="list">
+          <!--<div class="row">
+            <div class="col"><ion-toggle ng-model="goalDetails.isUrgent" toggle-class="toggle-balanced">Urgent</ion-toggle></div>
           </div>
+          <div>
+            <div class="col"><ion-toggle ng-model="goalDetails.isImportant" toggle-class="toggle-balanced">Important</ion-toggle></div>
+          </div>-->
+            <ion-toggle ng-model="goalDetails.isUrgent" toggle-class="toggle-balanced">Urgent</ion-toggle>
+            <ion-toggle ng-model="goalDetails.isImportant" toggle-class="toggle-balanced">Important</ion-toggle>
+        </div>
         </div>
         <div>
            <div class="item item-divider margin-top"> 
               Set Priority
               <i class="ion-plus-circled balanced pull-right medium" ng-click="modal.show()"></i>
            </div>
-           <div class="row" ng-repeat="priorities in priorityList">
+           <!--<div class="row" ng-repeat="priorities in priorityList">
             <div class="col" ng-repeat="priority in priorities">
-              <ion-radio ng-model="selectedPriority" ng-value="priority.id">{{priority.text}}</ion-radio>
+              <ion-radio ng-model="selectedPriority" ng-value="priority.id" class="balanced">{{priority.text}}</ion-radio>
+           </div>-->
+           <div class="list">
+             <ion-radio ng-repeat="priority in priorities" ng-model="goalDetails.selectedPriority" ng-value="priority.id" class="balanced">{{priority.text}}</ion-radio>
            </div>
         </div>
-        <div  class="center">
-        <button class="button button-clear button-balanced center" ng-click="addGoal(goalDetails)">
-          Add Goal
-        </button>
-        <div>
       </div>
     </div>
-    <!--<div class="item item-divider"> 
-           Urgent goals
-      </div>
-      <ion-list>
-      <ion-item class="item-remove-animate" ng-repeat="goal in goalsByQuadrant" type="item-text-wrap" href="#">
-                <h2 class="balanced">{{goal.quadrantName}} - {{goal.description}}</h2>
-                <span ng-show="goal.isUrgent" class="balanced"><i class="icon ion-information-circled balanced"></i> Urgent</span>
-                <span ng-show="goal.isImportant" class="balanced"><i class="icon ion-information-circled balanced"></i> Important</span>
-            </ion-item>
-    </ion-list>-->
   </ion-content>
 </ion-view>

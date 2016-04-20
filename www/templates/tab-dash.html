@@ -1,8 +1,12 @@
 <ion-view view-title="Quadrants" class="">
+    <ion-nav-buttons side="right">
+      <button class="button button-clear button-light" ng-click="modal.show()">
+          Add
+        </button>
+    </ion-nav-buttons>
   <ion-content class="view-content">
        <div class="item item-divider"> 
            My Quadrants
-        <i class="ion-plus-circled balanced pull-right medium" ng-click="modal.show()"></i>
         </div>
         <div class="quadrant-panel">
             <div class="row" ng-repeat="quadrantMatrix in quadrants">
@@ -13,40 +17,6 @@
                     </a>
                 </div>
             </div>
-            <!--<div class="row">
-                <div class="col col-33 center">
-                    <a href="#/tab/quadrants/1" class="button button-icon balanced">
-                        <i class="fa fa-user fa-3x icon"></i>
-                        Personal
-                    </a>
-                </div>
-                <div class="col col-33 center">
-                    <a href="#/tab/quadrants/2" class="button button-icon balanced">
-                        <i class="fa fa-laptop fa-3x icon"></i>
-                        Work
-                    </a>
-                </div>
-                <div class="col col-33 center">
-                    <a href="#/tab/quadrants/3" class="button button-icon balanced">
-                        <i class="fa fa-home fa-3x icon"></i>
-                        Home   
-                    </a>  
-                </div>
-            </div>
-            <div class="row">
-                <div class="col center">
-                    <a href="#/tab/quadrants/4" class="button button-icon balanced">
-                        <i class="fa fa-child fa-3x icon"></i>
-                        Kid
-                    </a>
-                </div>
-                <div class="col center">
-                    
-                </div>
-                <div class="col center">
-                    
-                </div>
-            </div>-->
         </div>
     
   </ion-content>

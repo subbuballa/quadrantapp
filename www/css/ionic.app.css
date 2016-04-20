@@ -56,6 +56,16 @@ $dark:                            #444 !default;
 .padding-5 {
   margin: 5px; }
 
+.message-container {
+  height: 100%; }
+
+.message {
+  height: 200px;
+  color: gray;
+  position: fixed;
+  margin-top: 20px;
+  margin-left: 20px; }
+
 /*!
   Ionicons, v2.0.1
   Created by Ben Sperry for the Ionic Framework, http://ionicons.com/

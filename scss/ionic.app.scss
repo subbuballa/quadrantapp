@@ -21,6 +21,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 $fa-font-path:        "../lib/font-awesome/fonts" !default;
 
 $balanced: #213D6F;
+$light: #fff;
 
 .view-with-bg{
   .view-content {
@@ -74,6 +75,19 @@ $balanced: #213D6F;
 }
 .padding-5{
     margin: 5px;
+}
+
+.message-container{
+    height: 100%;
+}
+.message {
+    height: 200px;
+    color: gray;
+    position: fixed;
+    // top: 50%;
+    // left: 50%;
+    margin-top: 20px;
+    margin-left: 20px;
 }
 
 //trdy

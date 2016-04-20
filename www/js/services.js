@@ -169,6 +169,9 @@ angular.module('starter.services', [])
         }
       }
       return goalsPerQuadrant;
+    },
+    hasGoals: function() {
+      return goals.length > 0;
     }
   } 
 });
