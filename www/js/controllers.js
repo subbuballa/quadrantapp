@@ -57,8 +57,8 @@ $scope.data = [
   $scope.quadrants = quadrantMatrix;
   $scope.allQuadrants = Quadrants.all();
 })
-.controller('QuadrantDetailCtrl',function($scope, $stateParams, $filter, $ionicModal, Quadrants, Goals, PrioritiesList){
-  
+.controller('QuadrantDetailCtrl',function($scope, $stateParams, $filter
+          , $ionicModal, Quadrants, Goals, PrioritiesList,$ionicPlatform,Database){  
   $ionicModal.fromTemplateUrl('templates/addCustomPriority.html',{
     scope: $scope,
     animation: 'slide-in-up'
@@ -129,13 +129,28 @@ $scope.data = [
     return false;
   }
 })
-.controller('GoalsCtrl', function($scope, Goals) {
-  var goals = Goals.all();
+.controller('GoalsCtrl', function($scope,$ionicPlatform, Goals) {
+  $scope.hasGoals = false;  
+  
+  Goals.all().then(function(data){
+        $scope.goals = data.goals.data;
+        if($scope.goals.length > 0){
+          $scope.hasGoals = true;
+        }
+      });;
+  
+  $scope.$watch('goals',function(newVal){
+    $scope.goals = newVal;
+  });
+  
   $scope.getGoals = function(){
-    return Goals.all();
+    return Goals.all().then(function(data){
+        $scope.goals = data.goals.data;
+      });
   }
+  
   $scope.hasGoals = function(){
-    return Goals.hasGoals();
+    return $scope.goals.length > 0;
   };
   $scope.getCssClass = function(goal) {
     var isUrgent = goal.isUrgent;

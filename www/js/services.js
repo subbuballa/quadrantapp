@@ -1,4 +1,61 @@
 angular.module('starter.services', [])
+.factory('Database',['$q','Loki',function BirthdayService($q, Loki) {  
+    var _db;
+    var _data = {};
+
+    function initDB() {          
+        var adapter = new LokiCordovaFSAdapter({"prefix": "loki"});  
+        _db = new Loki('quadrantDB',
+                {
+                    autosave: true,
+                    autosaveInterval: 1000, // 1 second
+                    adapter: adapter
+                });
+        var options = {};
+        _db.loadDatabase(options,function() {
+          
+        if(!_data.quadrants){
+          _data.quadrants = _db.addCollection('quadrants');
+        }
+        
+        if(!_data.goals){
+          _data.goals = _db.addCollection('goals');
+        }
+          
+        });
+    };
+    
+    function getdata(){
+      return $q(function(resolve, reject){
+         _data.quadrants = _db.getCollection('quadrants');
+          _data.goals = _db.getCollection('goals');
+           resolve(_data);
+      });
+    };
+    
+    function add(type,value) {
+      if(type == 'goal')
+        _data.goals.insert(value);
+    }
+    
+    function update(type,value) {
+      if(type == 'goal')
+        _data.goals.update(value);
+    }
+    
+    function remove(type,value) {
+      if(type == 'goal')
+        _data.goals.remove(value);
+    }
+
+    return {
+        initDB: initDB,
+        getdata: getdata,
+        add: add,
+        update: update,
+        remove: remove
+    };
+}])
 .factory('Quadrants',function() {
   var quadrants = [{
     id: 1,
@@ -111,7 +168,7 @@ angular.module('starter.services', [])
     }
   }
 })
-.factory('Goals',function() {
+.factory('Goals',function(Database) {
   var goals = [];
   
   function setPersistedData(goals) {
@@ -128,15 +185,13 @@ angular.module('starter.services', [])
   
   return{
     all: function() {
-      return goals;
+      return Database.getdata();
     },
     add: function(goal){
-      goals.push(goal);
-      //setPersistedData(goals);
+      Database.add('goal',goal);
     },
     get: function(quadrantId){
       var goalsPerQuadrant = [];
-      //var persistedGoals = getPersistedData();
       for (var i = 0; i < goals.length; i++) {
         if (goals[i].quadrantId === parseInt(quadrantId) && goals[i].isUrgent) {
           goalsPerQuadrant.push(goals[i]);
@@ -145,7 +200,6 @@ angular.module('starter.services', [])
       return goalsPerQuadrant;
     },
     hasGoals: function() {
-      //var persistedGoals = getPersistedData();
       return goals.length > 0;
     }
   } 

@@ -18,12 +18,6 @@
            Set Urgency
         </div>
         <div class="list">
-          <!--<div class="row">
-            <div class="col"><ion-toggle ng-model="goalDetails.isUrgent" toggle-class="toggle-balanced">Urgent</ion-toggle></div>
-          </div>
-          <div>
-            <div class="col"><ion-toggle ng-model="goalDetails.isImportant" toggle-class="toggle-balanced">Important</ion-toggle></div>
-          </div>-->
             <ion-toggle ng-model="goalDetails.isUrgent" toggle-class="toggle-balanced">Urgent</ion-toggle>
             <ion-toggle ng-model="goalDetails.isImportant" toggle-class="toggle-balanced">Important</ion-toggle>
         </div>
@@ -33,10 +27,6 @@
               Set Priority
               <i class="ion-plus-circled balanced pull-right medium" ng-click="modal.show()"></i>
            </div>
-           <!--<div class="row" ng-repeat="priorities in priorityList">
-            <div class="col" ng-repeat="priority in priorities">
-              <ion-radio ng-model="selectedPriority" ng-value="priority.id" class="balanced">{{priority.text}}</ion-radio>
-           </div>-->
            <div class="list">
              <ion-radio ng-repeat="priority in priorities" ng-model="goalDetails.selectedPriority" ng-value="priority.id" class="balanced">{{priority.text}}</ion-radio>
            </div>
