@@ -1,6 +1,8 @@
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope, Quadrants) {
+  $scope.quadrants = Quadrants.all();
+  
   $scope.options = {  
   chart: {
     type: 'pieChart',
