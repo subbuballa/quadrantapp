@@ -1,34 +1,38 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, Quadrants) {
-  $scope.quadrants = Quadrants.all();
+.controller('DashCtrl', function($scope, Quadrants, Goals) {
+  var quadrants = Quadrants.all();
   
-  $scope.options = {  
-  chart: {
-    type: 'pieChart',
-    height: 200,
-    x: function(d){return d.key;},
-    y: function(d){return d.y;},
-    showLabels: false,
-    duration: 500,
-    labelThreshold: 0.01,
-    labelSunbeamLayout: true,
-    width: 200,
-    title: "Personal",
-    donut: true,
-    tooltips: false,
-    showLegend: false,
-    legend: {
-      margin: {
-        top: 5,
-        right: 0,
-        bottom: 5,
-        left: 0
-      }
-    }
+  function getOptions(title){
+    var options = {  
+            chart: {
+            type: 'pieChart',
+            height: 200,
+            x: function(d){return d.key;},
+            y: function(d){return d.y;},
+            showLabels: false,
+            duration: 500,
+            labelThreshold: 0.01,
+            labelSunbeamLayout: true,
+            width: 200,
+            title: title,
+            donut: true,
+            tooltips: false,
+            showLegend: false,
+            legend: {
+              margin: {
+                top: 5,
+                right: 0,
+                bottom: 5,
+                left: 0
+              }
+          }
+        }
+      };
+    return options;
   }
-};
-$scope.data = [  
+   
+var data = [  
   {
     key: "urgent & important",
     y: 4
@@ -46,6 +50,26 @@ $scope.data = [
     y: 0
   }
 ];
+function getData(quadrantId){
+  var goalsByQuadrant = Goals.find({quadrantId: quadrantId});
+  return goalsByQuadrant;
+}
+function getQuadrantData(){
+  var quadrantData = [];
+  for(var i=0;i<quadrants.length;i++){
+    var quadrant = {};
+    quadrant.options = getOptions(quadrants[i].name);
+    quadrant.data = getData(quadrants[i].id);
+    quadrant.name = quadrants[i].name;
+    quadrant.description = quadrants[i].description;
+    quadrant.icon = quadrants[i].icon;
+    quadrant.quadrant = quadrant;
+    quadrantData.push(quadrant);
+  }
+  return quadrantData;
+}
+$scope.quadrantData = getQuadrantData();
+
 })
 .controller('MyQuadrantCtrl', function($scope, $ionicModal, $filter, Quadrants) {
   $ionicModal.fromTemplateUrl('templates/availableQuadrants.html',{
@@ -149,6 +173,10 @@ $scope.data = [
     return Goals.all().then(function(data){
         $scope.goals = data.goals.data;
       });
+  }
+  
+  $scope.deleteGoal = function(goal){
+    Goals.remove(goal);
   }
   
   $scope.hasGoals = function(){

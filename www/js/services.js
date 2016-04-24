@@ -9,7 +9,7 @@ angular.module('starter.services', [])
                 {
                     autosave: true,
                     autosaveInterval: 1000, // 1 second
-                    adapter: adapter
+                    //adapter: adapter
                 });
         var options = {};
         _db.loadDatabase(options,function() {
@@ -47,13 +47,19 @@ angular.module('starter.services', [])
       if(type == 'goal')
         _data.goals.remove(value);
     }
+    
+    function find(type, condition) {
+      if(type == 'goal')
+        return _data.goals.find(condition);
+    }
 
     return {
         initDB: initDB,
         getdata: getdata,
         add: add,
         update: update,
-        remove: remove
+        remove: remove,
+        find: find
     };
 }])
 .factory('Quadrants',function() {
@@ -189,6 +195,12 @@ angular.module('starter.services', [])
     },
     add: function(goal){
       Database.add('goal',goal);
+    },
+    remove: function(goal){
+      Database.remove('goal',goal);
+    },
+    find: function(condition){
+      Database.find('goal',condition);
     },
     get: function(quadrantId){
       var goalsPerQuadrant = [];
