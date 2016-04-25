@@ -817,6 +817,7 @@
         len = this.collections.length;
 
       for (i = 0; i < len; i += 1) {
+        if(this.collections[i]){
         if (this.collections[i].name === collectionName) {
           var tmpcol = new Collection(collectionName, {});
           var curcol = this.collections[i];
@@ -826,7 +827,8 @@
             }
           }
           this.collections.splice(i, 1);
-          return;
+          //return;
+        }
         }
       }
     };

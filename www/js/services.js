@@ -13,23 +13,25 @@ angular.module('starter.services', [])
                 });
         var options = {};
         _db.loadDatabase(options,function() {
+          _data.quadrants = _db.getCollection('quadrants');
+          _data.goals = _db.getCollection('goals');
           
-        if(!_data.quadrants){
+          if(_data.quadrants){
+            _db.removeCollection('quadrants');
+          }
+          
+          if(_data.goals){
+            _db.removeCollection('goals');
+          }
           _data.quadrants = _db.addCollection('quadrants');
-        }
-        
-        if(!_data.goals){
           _data.goals = _db.addCollection('goals');
-        }
-          
         });
     };
     
     function getdata(){
       return $q(function(resolve, reject){
-         _data.quadrants = _db.getCollection('quadrants');
-          _data.goals = _db.getCollection('goals');
-           resolve(_data);
+         
+         resolve(_data);
       });
     };
     
@@ -200,7 +202,7 @@ angular.module('starter.services', [])
       Database.remove('goal',goal);
     },
     find: function(condition){
-      Database.find('goal',condition);
+      return Database.find('goal',condition);
     },
     get: function(quadrantId){
       var goalsPerQuadrant = [];

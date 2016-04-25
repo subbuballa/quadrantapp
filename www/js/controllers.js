@@ -18,7 +18,7 @@ angular.module('starter.controllers', [])
             title: title,
             donut: true,
             tooltips: false,
-            showLegend: false,
+            showLegend: true,
             legend: {
               margin: {
                 top: 5,
@@ -51,9 +51,32 @@ var data = [
   }
 ];
 function getData(quadrantId){
-  var goalsByQuadrant = Goals.find({quadrantId: quadrantId});
-  return goalsByQuadrant;
+  console.log('hesdd');
+  var goalsByQuadrant = Goals.find({'quadrantId': {'$eq': quadrantId}});
+  var data = [];
+  for(var i=0;i<goalsByQuadrant.length;i++){
+    var key = getKey(goalsByQuadrant[i]);
+    if(!data[key]){
+      data[key] = 1;
+    }
+    else{
+      data[key] = data[key]+1;
+    }
+  }
+  var result = [];
+  for(key in data){
+    result.push({key:key,y:data[key]});
+  }  
+  return result;
 }
+
+function getKey(quadrant){
+  if(quadrant.isUrgent&&quadrant.isImportant) return 'quadrant1';
+  if(quadrant.isUrgent&&!quadrant.isImportant) return 'quadrant2';
+  if(!quadrant.isUrgent&&quadrant.isImportant) return'quadrant3';
+  if(!quadrant.isUrgent&&!quadrant.isImportant) return 'quadrant4';
+}
+
 function getQuadrantData(){
   var quadrantData = [];
   for(var i=0;i<quadrants.length;i++){

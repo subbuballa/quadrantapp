@@ -7,7 +7,7 @@
         <p class="message">Currently you dont have any goals, set goals in My Quadrants</p>
     </div>
        <ion-list ng-show="hasGoals">
-            <ion-item class="item-remove-animate" ng-repeat="goal in goals track by $index" type="item-text-wrap" href="#">
+            <ion-item class="item-remove-animate" ng-repeat="goal in goals" type="item-text-wrap" href="#">
                 <h2 class="balanced" ng-class="getCssClass(goal)">{{goal.quadrantName}} - {{goal.description}}</h2>
                 <span ng-show="goal.isUrgent" class="balanced"><i class="icon ion-information-circled balanced"></i> Urgent</span>
                 <span ng-show="goal.isImportant" class="balanced"><i class="icon ion-information-circled balanced"></i> Important</span>
