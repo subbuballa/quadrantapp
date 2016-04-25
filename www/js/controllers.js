@@ -59,7 +59,7 @@ function getQuadrantData(){
   for(var i=0;i<quadrants.length;i++){
     var quadrant = {};
     quadrant.options = getOptions(quadrants[i].name);
-    quadrant.data = getData(quadrants[i].id);
+    quadrant.data = data;//getData(quadrants[i].id);
     quadrant.name = quadrants[i].name;
     quadrant.description = quadrants[i].description;
     quadrant.icon = quadrants[i].icon;
