@@ -5,9 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'nvd3', 'lokijs', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'ngCordova', 'nvd3', 'lokijs', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform,Database) {
+.run(function($ionicPlatform,Database,SQLliteDatabase) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -21,6 +21,7 @@ angular.module('starter', ['ionic', 'nvd3', 'lokijs', 'starter.controllers', 'st
       StatusBar.styleDefault();
     }
     Database.initDB();
+    SQLliteDatabase.initDB();
   });
 })
 

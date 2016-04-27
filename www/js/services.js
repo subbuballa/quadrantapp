@@ -65,6 +65,51 @@ angular.module('starter.services', [])
         find: find
     };
 }])
+.factory('SQLliteDatabase',['$cordovaSQLite',function(cordovaSQLite){
+  var _db;
+  var _data = {};
+
+  function initDB() {          
+    cordovaSQLite.openDB("my.db");
+    cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS goals(id integer primary key, joke text)");
+  };
+  
+  function getdata(){
+    return $q(function(resolve, reject){
+        
+        resolve(_data);
+    });
+  };
+  
+  function add(type,value) {
+    if(type == 'goal')
+      _data.goals.insert(value);
+  }
+  
+  function update(type,value) {
+    if(type == 'goal')
+      _data.goals.update(value);
+  }
+  
+  function remove(type,value) {
+    if(type == 'goal')
+      _data.goals.remove(value);
+  }
+  
+  function find(type, condition) {
+    if(type == 'goal')
+      return _data.goals.find(condition);
+  }
+
+  return {
+      initDB: initDB,
+      getdata: getdata,
+      add: add,
+      update: update,
+      remove: remove,
+      find: find
+  };
+}])
 .factory('Quadrants',function() {
   var quadrants = [{
     id: 1,
