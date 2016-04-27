@@ -12,19 +12,20 @@ angular.module('starter.services', [])
                     adapter: adapter
                 });
         var options = {};
-        _db.loadDatabase(options,function() {
+        
+        _db.loadDatabase('quadrantDB',function() {
           _data.quadrants = _db.getCollection('quadrants');
           _data.goals = _db.getCollection('goals');
           
-          if(_data.quadrants){
-            _db.removeCollection('quadrants');
+          if(!_data.quadrants){
+            _db.addCollection('quadrants');
           }
           
-          if(_data.goals){
-            _db.removeCollection('goals');
+          if(!_data.goals){
+            _db.addCollection('goals');
           }
-          _data.quadrants = _db.addCollection('quadrants');
-          _data.goals = _db.addCollection('goals');
+          // _data.quadrants = _db.addCollection('quadrants');
+          // _data.goals = _db.addCollection('goals');
         });
     };
     

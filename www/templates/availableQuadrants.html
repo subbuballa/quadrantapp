@@ -6,9 +6,10 @@
     </ion-header-bar>
     <ion-content>
         <ion-list>
-            <ion-item class="item-remove-animate" ng-repeat="quadrant in allQuadrants">
+            <ion-item class="item-remove-animate item-icon-left item-icon-right" ng-repeat="quadrant in allQuadrants">
                 <i class="fa icon" ng-class="quadrant.icon"></i>
                 {{quadrant.name}}
+                <i class="icon ion-ios-checkmark"></i>
             </ion-item>
         </ion-list>
     </ion-content>

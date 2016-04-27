@@ -18,7 +18,7 @@ angular.module('starter.controllers', [])
             title: title,
             donut: true,
             tooltips: false,
-            showLegend: true,
+            showLegend: false,
             legend: {
               margin: {
                 top: 5,
