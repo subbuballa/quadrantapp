@@ -9,7 +9,7 @@ angular.module('starter.services', [])
                 {
                     autosave: true,
                     autosaveInterval: 1000, // 1 second
-                    //adapter: adapter
+                    adapter: adapter
                 });
         var options = {};
         
