@@ -1,5 +1,7 @@
-<ion-view view-title="Dashboard">
+
+<div class="view-background"><ion-view view-title="Dashboard" class="view-with-bg">
   <ion-content class="view-content">
+      <div>{{message}}</div>
     <div ng-repeat="quadrant in quadrantData" class="list card">
       <div class="item item-icon-left">
         <i class="fa icon" ng-class="quadrant.icon"></i>
@@ -12,3 +14,4 @@
     </div>
   </ion-content>
 </ion-view>
+</div>

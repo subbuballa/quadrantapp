@@ -9,7 +9,7 @@ angular.module('starter.services', [])
                 {
                     autosave: true,
                     autosaveInterval: 1000, // 1 second
-                    adapter: adapter
+                    //adapter: adapter
                 });
         var options = {};
         
@@ -31,10 +31,10 @@ angular.module('starter.services', [])
     
     function getdata(){
       return $q(function(resolve, reject){
-         
          resolve(_data);
       });
     };
+    
     
     function add(type,value) {
       if(type == 'goal')
@@ -54,6 +54,7 @@ angular.module('starter.services', [])
     function find(type, condition) {
       if(type == 'goal')
         return _data.goals.find(condition);
+      return [];
     }
 
     return {
@@ -65,25 +66,48 @@ angular.module('starter.services', [])
         find: find
     };
 }])
-.factory('SQLliteDatabase',['$cordovaSQLite',function(cordovaSQLite){
+.factory('SQLliteDatabase',['$cordovaSQLite','$q',function(cordovaSQLite,$q){
   var _db;
   var _data = {};
+  var _goals = [];
 
-  function initDB() {          
-    cordovaSQLite.openDB("my.db");
-    cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS goals(id integer primary key, joke text)");
+  function initDB() {
+    if (window.sqlitePlugin !== undefined) {          
+      _db = cordovaSQLite.openDB({name:"quadrant.db",location:'default'});
+    }
+    else{
+      _db = window.openDatabase('quadrant.db', '1.0', 'database', -1);
+    }
+    // var drop = 'DROP TABLE IF EXISTS goals';
+    // query(drop);
+    var q = "CREATE TABLE IF NOT EXISTS goals(id integer primary key,quadrantId integer,quadrantName text,quadrantDesc text,isUrgent boolean,isImportant boolean, description text,priority int)";
+    query(q);
   };
+  
+  var query = function(query, bindings) {
+        bindings = typeof bindings !== 'undefined' ? bindings : [];
+        var deferred = $q.defer();
+
+        _db.transaction(function(transaction) {
+            transaction.executeSql(query, bindings, function(transaction, result) {
+                deferred.resolve(result);
+            }, function(transaction, error) {
+                deferred.reject(error);
+            });
+        });
+
+        return deferred.promise;
+    };
   
   function getdata(){
-    return $q(function(resolve, reject){
-        
-        resolve(_data);
-    });
+    return query('SELECT * FROM goals');
   };
   
-  function add(type,value) {
-    if(type == 'goal')
-      _data.goals.insert(value);
+  
+  function add(data) {
+    var q = "Insert into goals (quadrantId,quadrantName,quadrantDesc,isUrgent,isImportant,description,priority) values (?,?,?,?,?,?,?)";
+    var bindings = [data.quadrantId,data.quadrantName,data.quadrantDesc,data.isUrgent,data.isImportant,data.description,data.priority];
+    return query(q,bindings);
   }
   
   function update(type,value) {
@@ -91,14 +115,16 @@ angular.module('starter.services', [])
       _data.goals.update(value);
   }
   
-  function remove(type,value) {
-    if(type == 'goal')
-      _data.goals.remove(value);
+  function remove(data) {
+    var q = 'DELETE FROM goals WHERE ID = ?'
+    var bindings = [data.id];
+    return query(q,bindings);
   }
   
-  function find(type, condition) {
-    if(type == 'goal')
-      return _data.goals.find(condition);
+  function find(quadrantId) {
+    var q = 'SELECT * FROM goals where quadrantId = ?'
+    var bindings = [quadrantId];
+    return query(q,bindings);
   }
 
   return {
@@ -222,33 +248,64 @@ angular.module('starter.services', [])
     }
   }
 })
-.factory('Goals',function(Database) {
+.factory('Goals',['SQLliteDatabase',function(Database) {
   var goals = [];
-  
-  function setPersistedData(goals) {
-      window.localStorage.setItem('goals',JSON.stringify(goals));
-  }
-  
-  function getPersistedData() {
-      var goalJson = window.localStorage.getItem('goals');
-      if(goalJson === 'undefined') return [];
-      goals = JSON.parse(goalJson);
-  }
-  
-  //getPersistedData();
+  var fetchAll = function(result) {
+        var output = [];
+        for (var i = 0; i < result.rows.length; i++) {
+            output.push(result.rows.item(i));
+        }        
+        return output;
+    };
+   
+   var convertRowToJSON = function(row){
+     var result = "{id:" + row.id + ",description:" + row.goaltext + "}";
+     return JSON.stringify(result);;
+   }
   
   return{
     all: function() {
       return Database.getdata();
+      // .then(function(data){
+      //   goals = fetchAll(data);
+      // });
     },
     add: function(goal){
-      Database.add('goal',goal);
+      return Database.add(goal);
     },
     remove: function(goal){
       Database.remove('goal',goal);
     },
-    find: function(condition){
-      return Database.find('goal',condition);
+    find: function(quadrantId){
+      return Database.find(quadrantId).then(function(data){
+          var goalsByQuadrant = fetchAll(data);
+          return getData(goalsByQuadrant);
+        });
+        
+        function getData(goalsByQuadrant){
+          var data = [];
+          for(var i=0;i<goalsByQuadrant.length;i++){
+            var key = getKey(goalsByQuadrant[i]);
+            if(!data[key]){
+              data[key] = 1;
+            }
+            else{
+              data[key] = data[key]+1;
+            }
+          }
+          var result = [];
+          for(key in data){
+            result.push({key:key,y:data[key]});
+          }  
+          return result;
+        }
+
+        function getKey(quadrant){
+          if(quadrant.isUrgent&&quadrant.isImportant) return 'quadrant1';
+          if(quadrant.isUrgent&&!quadrant.isImportant) return 'quadrant2';
+          if(!quadrant.isUrgent&&quadrant.isImportant) return'quadrant3';
+          if(!quadrant.isUrgent&&!quadrant.isImportant) return 'quadrant4';
+        } 
     },
     get: function(quadrantId){
       var goalsPerQuadrant = [];
@@ -263,4 +320,8 @@ angular.module('starter.services', [])
       return goals.length > 0;
     }
   } 
-});
+}])
+.factory('GoalDataFactory',[function(){
+  var goals = [];
+  return goals;
+}]);

@@ -1,8 +1,8 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, Quadrants, Goals) {
+.controller('DashCtrl', function($scope, Quadrants, Goals,$q) {
   var quadrants = Quadrants.all();
-  
+  $scope.message = '';
   function getOptions(title){
     var options = {  
             chart: {
@@ -50,47 +50,70 @@ var data = [
     y: 0
   }
 ];
-function getData(quadrantId){
-  console.log('hesdd');
-  var goalsByQuadrant = Goals.find({'quadrantId': {'$eq': quadrantId}});
-  var data = [];
-  for(var i=0;i<goalsByQuadrant.length;i++){
-    var key = getKey(goalsByQuadrant[i]);
-    if(!data[key]){
-      data[key] = 1;
-    }
-    else{
-      data[key] = data[key]+1;
-    }
-  }
-  var result = [];
-  for(key in data){
-    result.push({key:key,y:data[key]});
-  }  
-  return result;
-}
+// function getData(quadrantId){
+//   console.log('hesdd');
+//   var goalsByQuadrant = Goals.find(quadrantId);
+//   var data = [];
+//   for(var i=0;i<goalsByQuadrant.length;i++){
+//     var key = getKey(goalsByQuadrant[i]);
+//     if(!data[key]){
+//       data[key] = 1;
+//     }
+//     else{
+//       data[key] = data[key]+1;
+//     }
+//   }
+//   var result = [];
+//   for(key in data){
+//     result.push({key:key,y:data[key]});
+//   }  
+//   return result;
+// }
 
-function getKey(quadrant){
-  if(quadrant.isUrgent&&quadrant.isImportant) return 'quadrant1';
-  if(quadrant.isUrgent&&!quadrant.isImportant) return 'quadrant2';
-  if(!quadrant.isUrgent&&quadrant.isImportant) return'quadrant3';
-  if(!quadrant.isUrgent&&!quadrant.isImportant) return 'quadrant4';
-}
+// function getKey(quadrant){
+//   if(quadrant.isUrgent&&quadrant.isImportant) return 'quadrant1';
+//   if(quadrant.isUrgent&&!quadrant.isImportant) return 'quadrant2';
+//   if(!quadrant.isUrgent&&quadrant.isImportant) return'quadrant3';
+//   if(!quadrant.isUrgent&&!quadrant.isImportant) return 'quadrant4';
+// }
+  var promises = [];
 
 function getQuadrantData(){
+  
   var quadrantData = [];
-  for(var i=0;i<quadrants.length;i++){
+  var message = '';
+  angular.forEach(quadrants,function(q,index){
+    var deferred = $q.defer();
+    var promise = deferred.promise;
+  
     var quadrant = {};
-    quadrant.options = getOptions(quadrants[i].name);
-    quadrant.data = data;//getData(quadrants[i].id);
-    quadrant.name = quadrants[i].name;
-    quadrant.description = quadrants[i].description;
-    quadrant.icon = quadrants[i].icon;
-    quadrant.quadrant = quadrant;
+    quadrant.name = q.name;
+    quadrant.description = q.description;
+    quadrant.icon = q.icon;
+    quadrant.quadrant = q;
     quadrantData.push(quadrant);
-  }
+    quadrant.options = getOptions(q.name);
+    try{
+      Goals.find(q.id).then(function(result){
+        quadrant.data = result;
+        //$scope.quadrantData.push(result);
+        deferred.resolve(result);
+      });
+    }
+    catch(e){
+      $scope.message = message + ' ' + e.message + i;
+      console.log(e);
+    }
+    promises.push(promise);
+  });
   return quadrantData;
 }
+$q.all(promises).then(function(result){
+  console.log(result);
+},function(reason){
+  
+});
+  
 $scope.quadrantData = getQuadrantData();
 
 })
@@ -107,7 +130,7 @@ $scope.quadrantData = getQuadrantData();
   $scope.allQuadrants = Quadrants.all();
 })
 .controller('QuadrantDetailCtrl',function($scope, $stateParams, $filter
-          , $ionicModal, Quadrants, Goals, PrioritiesList,$ionicPlatform,Database){  
+          , $ionicModal, Quadrants, Goals, PrioritiesList,$ionicPlatform,Database,GoalDataFactory){  
   $ionicModal.fromTemplateUrl('templates/addCustomPriority.html',{
     scope: $scope,
     animation: 'slide-in-up'
@@ -160,7 +183,21 @@ $scope.quadrantData = getQuadrantData();
       description: goalDetails.description,
       priority: goalDetails.selectedPriority
     }
-    Goals.add(goal);
+    Goals.add(goal).then(function(data){
+        Goals.all().then(function(data){
+          GoalDataFactory.goals = fetchAll(data);
+        });
+      });
+  
+  function fetchAll(result) {
+        var output = [];
+
+        for (var i = 0; i < result.rows.length; i++) {
+            output.push(result.rows.item(i));
+        }
+        
+        return output;
+    };;
     $scope.goalDetails ={
       quadrant:goalDetails.quadrant,
       isUrgent: false,
@@ -178,17 +215,31 @@ $scope.quadrantData = getQuadrantData();
     return false;
   }
 })
-.controller('GoalsCtrl', function($scope,$ionicPlatform, Goals) {
-  $scope.hasGoals = false;  
-  
-  Goals.all().then(function(data){
-        $scope.goals = data.goals.data;
-        if($scope.goals.length > 0){
+.controller('GoalsCtrl', function($scope,$ionicPlatform, Goals,GoalDataFactory) {
+  $scope.hasGoals = null;  
+  $scope.showSpinner = null; 
+  $scope.goals = Goals.all().then(function(data){
+        GoalDataFactory.goals = fetchAll(data);
+        $scope.goals = GoalDataFactory.goals;
+        $scope.showSpinner = false;
+        if(GoalDataFactory.goals.length > 0){
           $scope.hasGoals = true;
+        }
+        else{
+          $scope.hasGoals = false;
         }
       });;
   
-  $scope.$watch('goals',function(newVal){
+  function fetchAll(result) {
+        var output = [];
+
+        for (var i = 0; i < result.rows.length; i++) {
+            output.push(result.rows.item(i));
+        }
+        
+        return output;
+    };
+  $scope.$watch('GoalDataFactory.goals',function(newVal){
     $scope.goals = newVal;
   });
   

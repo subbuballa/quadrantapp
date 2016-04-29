@@ -21,22 +21,28 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 $fa-font-path:        "../lib/font-awesome/fonts" !default;
 
 $balanced: #333333;
-$stable: #F0F0F0;
+$stable: #fff;
 $item-divider-bg:#f8f8f8;
 $light: #fff;
 $assertive:#e0995e;
 
 .view-with-bg{
   .view-content {
-    background-image: url('../img/quadrantbg.jpg');
-    background-size: cover;
+    // background-image: url('../img/quadrantbg.jpg');
+    // background-size: cover;
+    background-color: #f5F5f5;
   }
+}
+
+.view-background{
+    background-color: #f5F5f5;
 }
 
 .view-with-bg{
   .pane {
-    background-image: url('../img/quadrantbg.jpg') !important;
-    background-size: cover !important;
+    // background-image: url('../img/quadrantbg.jpg') !important;
+    // background-size: cover !important;
+    background-color: #333
   }
 }
 

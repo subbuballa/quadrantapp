@@ -1,16 +1,19 @@
-<ion-view view-title="Goals">
-    <ion-content>
+<ion-view view-title="Goals" class="view-with-bg">
+    <ion-content class="view-content">
     <!--<div class="item item-divider"> 
         Goals
     </div>-->
+    <div class="spinner" ng-show="showSpinner">
+        <ion-spinner icon="android"></ion-spinner>
+      </div>
     <div class="message-container" ng-show="!hasGoals">
         <p class="message">Currently you dont have any goals, set goals in My Quadrants</p>
     </div>
        <ion-list ng-show="hasGoals">
             <ion-item class="item-remove-animate" ng-repeat="goal in goals" type="item-text-wrap" href="#">
                 <h2 class="balanced" ng-class="getCssClass(goal)">{{goal.quadrantName}} - {{goal.description}}</h2>
-                <span ng-show="goal.isUrgent" class="balanced"><i class="icon ion-information-circled balanced"></i> Urgent</span>
-                <span ng-show="goal.isImportant" class="balanced"><i class="icon ion-information-circled balanced"></i> Important</span>
+                <span ng-show="goal.isUrgent=='true'" class="balanced"><i class="icon ion-information-circled balanced"></i> Urgent</span>
+                <span ng-show="goal.isImportant=='true'" class="balanced"><i class="icon ion-information-circled balanced"></i> Important</span>
                 <ion-option-button class="button-assertive icon ion-trash-a" ng-click="deleteGoal(goal)"></ion-option-button>
             </ion-item>
     </ion-list>

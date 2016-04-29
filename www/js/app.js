@@ -44,6 +44,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'nvd3', 'lokijs', 'starter.cont
 
   .state('tab.dash', {
     url: '/dash',
+    cache: false,
     views: {
       'tab-dash': {
         templateUrl: 'templates/tab-dash.html',
@@ -71,10 +72,11 @@ angular.module('starter', ['ionic', 'ngCordova', 'nvd3', 'lokijs', 'starter.cont
   })
   .state('tab.goals', {
     url: '/goals',
+    cache: false,
     views: {
       'tab-goals': {
         templateUrl: 'templates/tab-goals.html',
-        controller: 'GoalsCtrl'
+        controller: 'GoalsCtrl',
       }
     }
   })
