@@ -2,7 +2,9 @@
   "name": "HelloIonic",
   "private": "true",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.2.4"
+    "ionic": "driftyco/ionic-bower#1.2.4",
+    "underscore": "^1.8.3",
+    "angular-underscore-module": "^1.0.3"
   },
   "dependencies": {
     "font-awesome": "fontawesome#^4.6.1",

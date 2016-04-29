@@ -122,8 +122,8 @@ angular.module('starter.services', [])
   }
   
   function find(quadrantId) {
-    var q = 'SELECT * FROM goals where quadrantId = ?'
-    var bindings = [quadrantId];
+    var q = 'SELECT * FROM goals where quadrantId in (?,?,?,?)'
+    var bindings = [1,2,3,4];
     return query(q,bindings);
   }
 
@@ -248,7 +248,7 @@ angular.module('starter.services', [])
     }
   }
 })
-.factory('Goals',['SQLliteDatabase',function(Database) {
+.factory('Goals',['SQLliteDatabase','_','$q',function(Database,_,$q) {
   var goals = [];
   var fetchAll = function(result) {
         var output = [];
@@ -266,9 +266,6 @@ angular.module('starter.services', [])
   return{
     all: function() {
       return Database.getdata();
-      // .then(function(data){
-      //   goals = fetchAll(data);
-      // });
     },
     add: function(goal){
       return Database.add(goal);
@@ -277,35 +274,29 @@ angular.module('starter.services', [])
       Database.remove('goal',goal);
     },
     find: function(quadrantId){
-      return Database.find(quadrantId).then(function(data){
+      var deffered = $q.defer();
+      var quadrants = [];
+      Database.find(quadrantId).then(function(data){
           var goalsByQuadrant = fetchAll(data);
-          return getData(goalsByQuadrant);
-        });
-        
-        function getData(goalsByQuadrant){
-          var data = [];
-          for(var i=0;i<goalsByQuadrant.length;i++){
-            var key = getKey(goalsByQuadrant[i]);
-            if(!data[key]){
-              data[key] = 1;
+          var resultByQuadrant = _.groupBy(goalsByQuadrant,function(quadrant){
+            return quadrant.quadrantId;
+          });
+          angular.forEach(resultByQuadrant,function(quadrant,index) {
+            var result = _.groupBy(quadrant,function(q){
+                              return q.isImportant + '-' + q.isUrgent;
+                            });
+            if(quadrants[index]){
+              quadrants[index].push(result);
             }
             else{
-              data[key] = data[key]+1;
+              quadrants[index] = [];
+              quadrants[index].push(result);
             }
-          }
-          var result = [];
-          for(key in data){
-            result.push({key:key,y:data[key]});
-          }  
-          return result;
-        }
-
-        function getKey(quadrant){
-          if(quadrant.isUrgent&&quadrant.isImportant) return 'quadrant1';
-          if(quadrant.isUrgent&&!quadrant.isImportant) return 'quadrant2';
-          if(!quadrant.isUrgent&&quadrant.isImportant) return'quadrant3';
-          if(!quadrant.isUrgent&&!quadrant.isImportant) return 'quadrant4';
-        } 
+          });
+          deffered.resolve(quadrants);
+        });
+        
+        return deffered.promise;
     },
     get: function(quadrantId){
       var goalsPerQuadrant = [];

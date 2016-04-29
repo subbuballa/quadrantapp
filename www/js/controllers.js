@@ -31,90 +31,47 @@ angular.module('starter.controllers', [])
       };
     return options;
   }
-   
-var data = [  
-  {
-    key: "urgent & important",
-    y: 4
-  },
-  {
-    key: "urgent & not-important",
-    y: 2
-  },
-  {
-    key: "important & not urgent",
-    y: 2
-  },
-  {
-    key: "Not urgent & not important",
-    y: 0
-  }
-];
-// function getData(quadrantId){
-//   console.log('hesdd');
-//   var goalsByQuadrant = Goals.find(quadrantId);
-//   var data = [];
-//   for(var i=0;i<goalsByQuadrant.length;i++){
-//     var key = getKey(goalsByQuadrant[i]);
-//     if(!data[key]){
-//       data[key] = 1;
-//     }
-//     else{
-//       data[key] = data[key]+1;
-//     }
-//   }
-//   var result = [];
-//   for(key in data){
-//     result.push({key:key,y:data[key]});
-//   }  
-//   return result;
-// }
 
-// function getKey(quadrant){
-//   if(quadrant.isUrgent&&quadrant.isImportant) return 'quadrant1';
-//   if(quadrant.isUrgent&&!quadrant.isImportant) return 'quadrant2';
-//   if(!quadrant.isUrgent&&quadrant.isImportant) return'quadrant3';
-//   if(!quadrant.isUrgent&&!quadrant.isImportant) return 'quadrant4';
-// }
-  var promises = [];
+var promises = [];
 
 function getQuadrantData(){
   
   var quadrantData = [];
   var message = '';
-  angular.forEach(quadrants,function(q,index){
-    var deferred = $q.defer();
-    var promise = deferred.promise;
-  
-    var quadrant = {};
-    quadrant.name = q.name;
-    quadrant.description = q.description;
-    quadrant.icon = q.icon;
-    quadrant.quadrant = q;
-    quadrantData.push(quadrant);
-    quadrant.options = getOptions(q.name);
-    try{
-      Goals.find(q.id).then(function(result){
-        quadrant.data = result;
-        //$scope.quadrantData.push(result);
-        deferred.resolve(result);
-      });
-    }
-    catch(e){
-      $scope.message = message + ' ' + e.message + i;
-      console.log(e);
-    }
-    promises.push(promise);
-  });
+  Goals.find(1)
+    .then(function(result){
+      getDataByQuadrant(result);
+    });
   return quadrantData;
 }
-$q.all(promises).then(function(result){
-  console.log(result);
-},function(reason){
-  
-});
-  
-$scope.quadrantData = getQuadrantData();
+
+function getDataByQuadrant(data){
+    var groupedData = []; 
+    angular.forEach(quadrants,function(q,index){
+      var quadrant = {};
+      quadrant.name = q.name;
+      quadrant.description = q.description;
+      quadrant.icon = q.icon;
+      quadrant.quadrant = q;
+      quadrant.options = getOptions(q.name);
+      quadrant.data = getArray(data[q.id]);
+      groupedData.push(quadrant);
+  });
+  console.log(groupedData);
+  $scope.quadrantData = groupedData; 
+}
+
+function getArray(data){
+  var result = [];
+  if(data){
+    angular.forEach(data[0],function(item,key){
+      result.push({key:key,y:item.length});
+    });
+  }
+  return result;
+}
+
+getQuadrantData();
 
 })
 .controller('MyQuadrantCtrl', function($scope, $ionicModal, $filter, Quadrants) {
