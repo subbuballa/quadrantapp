@@ -52,6 +52,16 @@ angular.module('starter', ['ionic', 'ngCordova', 'nvd3', 'lokijs', 'underscore',
       }
     }
   })
+  .state('tab.dash.detail', {
+    url: '/:quadrantId',
+    cache: false,
+    views: {
+      'tab-dash@tab': {
+        templateUrl: 'templates/tab-dash-detail.html',
+        controller: 'DashDetailCtrl'
+      }
+    }
+  })
   .state('tab.myquadrants', {
       url: '/myquadrants',
       views: {

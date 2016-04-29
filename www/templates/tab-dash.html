@@ -2,7 +2,7 @@
 <div class="view-background"><ion-view view-title="Dashboard" class="view-with-bg">
   <ion-content class="view-content">
       <!--<div>{{message}}</div>-->
-    <div ng-repeat="quadrant in quadrantData" class="list">
+    <!--<div ng-repeat="quadrant in quadrantData" class="list">
       <div class="item item-icon-left">
         <i class="fa icon" ng-class="quadrant.icon"></i>
         <h2>{{quadrant.name}}</h2>
@@ -14,14 +14,15 @@
           <div class="col circle col-50"><span class="step">{{quadrant.total}}</span></div>
         </div>    
       </div>
-    </div>
-    <!--<ion-list>
-            <ion-item class="item-remove-animate item-icon-left item-icon-right" ng-repeat="quadrant in quadrantData">
-                <i class="fa icon" ng-class="quadrant.icon"></i>
-                <h2>{{quadrant.name}}</h2>
-                <p>{{quadrant.description}}</p>
-            </ion-item>
-        </ion-list>-->
+    </div>-->
+    <ion-list>
+        <ion-item class="item-remove-animate item-icon-left item-icon-right" ng-repeat="quadrant in quadrantData" ng-click="navigateTo(quadrant.id)">
+            <i class="fa icon" ng-class="quadrant.icon"></i>
+            <h2>{{quadrant.name}}</h2>
+            <p>{{quadrant.description}}</p>
+            <i class="icon ion-chevron-right"></i>
+        </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
 </div>

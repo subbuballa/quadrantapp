@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, Quadrants, Goals,$q) {
+.controller('DashCtrl', function($scope, Quadrants, Goals,$q,$state) {
   var quadrants = Quadrants.all();
   $scope.message = '';
   function getOptions(title){
@@ -31,36 +31,117 @@ angular.module('starter.controllers', [])
       };
     return options;
   }
+  $scope.navigateTo = function(id){
+    $state.go('tab.dash.detail', {quadrantId: id});
+  } 
 
-var promises = [];
+  function getQuadrantData(){
+    
+    var quadrantData = [];
+    var message = '';
+    Goals.find(1)
+      .then(function(result){
+        getDataByQuadrant(result);
+      });
+    return quadrantData;
+  }
 
-function getQuadrantData(){
-  
-  var quadrantData = [];
-  var message = '';
-  Goals.find(1)
-    .then(function(result){
-      getDataByQuadrant(result);
+  function getDataByQuadrant(data){
+      var groupedData = []; 
+      angular.forEach(quadrants,function(q,index){
+        var quadrant = {};
+        quadrant.name = q.name;
+        quadrant.description = q.description;
+        quadrant.icon = q.icon;
+        quadrant.id = q.id;
+        quadrant.quadrant = q;
+        quadrant.options = getOptions(q.name);
+        quadrant.data = getArray(data[q.id]);
+        quadrant.total = getTotal(data[q.id])
+        groupedData.push(quadrant);
     });
-  return quadrantData;
+    $scope.quadrantData = groupedData;
+  }
+
+  function getArray(data){
+    var result = [];
+    if(data){
+      angular.forEach(data[0],function(item,key){
+        result.push({key:key,y:item.length});
+      });
+    }
+    return result;
+  }
+
+function getTotal(data){
+  var result = 0;
+  if(data){
+    angular.forEach(data[0],function(item,key){
+      result = result + item.length;
+    });
+  }
+  return result;
 }
 
-function getDataByQuadrant(data){
-    var groupedData = []; 
-    angular.forEach(quadrants,function(q,index){
+getQuadrantData();
+
+})
+.controller('DashDetailCtrl',function($scope,$stateParams,Quadrants,Goals,_){
+  //var quadrants = Quadrants.all();
+  var qId = $stateParams.quadrantId;
+  var curQuadrant = Quadrants.get($stateParams.quadrantId);
+  console.log(curQuadrant);
+  
+  $scope.quadrant = [];
+   function getQuadrantData(){
+      var quadrantData = [];
+      var message = '';
+      Goals.find(1)
+        .then(function(result){
+          getDataByQuadrant(result);
+        });
+      return quadrantData;
+  }
+  function getOptions(title){
+    var options = {  
+            chart: {
+            type: 'pieChart',
+            height: 150,
+            x: function(d){return d.key;},
+            y: function(d){return d.y;},
+            showLabels: false,
+            duration: 500,
+            labelThreshold: 0.01,
+            labelSunbeamLayout: true,
+            width: 150,
+            title: title,
+            donut: true,
+            tooltips: false,
+            showLegend: false,
+            legend: {
+              margin: {
+                top: 5,
+                right: 0,
+                bottom: 5,
+                left: 0
+              }
+          }
+        }
+      };
+    return options;
+  }
+  function getDataByQuadrant(data){
       var quadrant = {};
-      quadrant.name = q.name;
-      quadrant.description = q.description;
-      quadrant.icon = q.icon;
-      quadrant.quadrant = q;
-      quadrant.options = getOptions(q.name);
-      quadrant.data = getArray(data[q.id]);
-      quadrant.total = getTotal(data[q.id])
-      groupedData.push(quadrant);
-  });
-  console.log(groupedData);
-  $scope.quadrantData = groupedData; 
-}
+      quadrant.name = curQuadrant.name;
+      quadrant.description = curQuadrant.description;
+      quadrant.icon = curQuadrant.icon;
+      quadrant.id = curQuadrant.id;
+      quadrant.quadrant = curQuadrant;
+      quadrant.options = getOptions(curQuadrant.name);
+      quadrant.data = getArray(data[curQuadrant.id]);
+      quadrant.total = getTotal(data[curQuadrant.id])
+      $scope.quadrant = quadrant;
+  }
 
 function getArray(data){
   var result = [];
@@ -83,7 +164,6 @@ function getTotal(data){
 }
 
 getQuadrantData();
-
 })
 .controller('MyQuadrantCtrl', function($scope, $ionicModal, $filter, Quadrants) {
   $ionicModal.fromTemplateUrl('templates/availableQuadrants.html',{
