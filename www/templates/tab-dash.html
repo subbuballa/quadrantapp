@@ -9,7 +9,10 @@
         <p>{{quadrant.description}}</p>
       </div>
       <div class="item item-image">
-        <nvd3 options="quadrant.options" data="quadrant.data"></nvd3>    
+        <div class="row">
+          <nvd3 class="col col-50" options="quadrant.options" data="quadrant.data"></nvd3>
+          <div class="col circle col-50"><span class="step">{{quadrant.total}}</span></div>
+        </div>    
       </div>
     </div>
     <!--<ion-list>

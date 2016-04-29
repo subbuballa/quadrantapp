@@ -55,6 +55,7 @@ function getDataByQuadrant(data){
       quadrant.quadrant = q;
       quadrant.options = getOptions(q.name);
       quadrant.data = getArray(data[q.id]);
+      quadrant.total = getTotal(data[q.id])
       groupedData.push(quadrant);
   });
   console.log(groupedData);
@@ -66,6 +67,16 @@ function getArray(data){
   if(data){
     angular.forEach(data[0],function(item,key){
       result.push({key:key,y:item.length});
+    });
+  }
+  return result;
+}
+
+function getTotal(data){
+  var result = 0;
+  if(data){
+    angular.forEach(data[0],function(item,key){
+      result = result + item.length;
     });
   }
   return result;
