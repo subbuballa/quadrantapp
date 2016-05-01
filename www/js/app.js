@@ -22,6 +22,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'nvd3', 'lokijs', 'underscore',
     }
     Database.initDB();
     SQLliteDatabase.initDB();
+    console.log('ionic platform ready');
   });
 })
 

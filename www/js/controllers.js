@@ -1,6 +1,7 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, Quadrants, Goals,$q,$state) {
+.controller('DashCtrl', function($scope, Quadrants, Goals,$q,$state,SQLliteDatabase) {
+  SQLliteDatabase.initDB();
   var quadrants = Quadrants.all();
   $scope.message = '';
   function getOptions(title){
@@ -83,11 +84,17 @@ function getTotal(data){
   return result;
 }
 
-getQuadrantData();
+try{
+  getQuadrantData();
+}
+catch(e){
+  $scope.message = e.stack;
+}
 
 })
-.controller('DashDetailCtrl',function($scope,$stateParams,Quadrants,Goals,_){
+.controller('DashDetailCtrl',function($scope,$stateParams,Quadrants,Goals,_,SQLliteDatabase){
   //var quadrants = Quadrants.all();
+  SQLliteDatabase.initDB();
   var qId = $stateParams.quadrantId;
   var curQuadrant = Quadrants.get($stateParams.quadrantId);
   console.log(curQuadrant);
@@ -162,8 +169,12 @@ function getTotal(data){
   }
   return result;
 }
-
-getQuadrantData();
+try{
+  getQuadrantData();
+}
+catch(e){
+  $scope.message = e.message;
+}
 })
 .controller('MyQuadrantCtrl', function($scope, $ionicModal, $filter, Quadrants) {
   $ionicModal.fromTemplateUrl('templates/availableQuadrants.html',{

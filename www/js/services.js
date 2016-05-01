@@ -73,7 +73,7 @@ angular.module('starter.services', [])
 
   function initDB() {
     if (window.sqlitePlugin !== undefined) {          
-      _db = cordovaSQLite.openDB({name:"quadrant.db",location:'default'});
+      _db = cordovaSQLite.openDB("quadrant.db", "1.0", "Demo", 1);
     }
     else{
       _db = window.openDatabase('quadrant.db', '1.0', 'database', -1);
@@ -84,19 +84,24 @@ angular.module('starter.services', [])
     query(q);
   };
   
+  // var query = function(query, bindings) {
+  //       bindings = typeof bindings !== 'undefined' ? bindings : [];
+  //       var deferred = $q.defer();
+
+  //       _db.transaction(function(transaction) {
+  //           transaction.executeSql(query, bindings, function(transaction, result) {
+  //               deferred.resolve(result);
+  //           }, function(transaction, error) {
+  //               deferred.reject(error);
+  //           });
+  //       });
+
+  //       return deferred.promise;
+  //   };
   var query = function(query, bindings) {
         bindings = typeof bindings !== 'undefined' ? bindings : [];
         var deferred = $q.defer();
-
-        _db.transaction(function(transaction) {
-            transaction.executeSql(query, bindings, function(transaction, result) {
-                deferred.resolve(result);
-            }, function(transaction, error) {
-                deferred.reject(error);
-            });
-        });
-
-        return deferred.promise;
+        return cordovaSQLite.execute(_db, query, bindings); 
     };
   
   function getdata(){
@@ -122,7 +127,7 @@ angular.module('starter.services', [])
   }
   
   function find(quadrantId) {
-    var q = 'SELECT * FROM goals where quadrantId in (?,?,?,?)'
+    var q = 'SELECT * FROM goals where quadrantId in (?,?,?,?)';
     var bindings = [1,2,3,4];
     return query(q,bindings);
   }
