@@ -11,10 +11,12 @@
         <div class="quadrant-panel">
             <div class="row" ng-repeat="quadrantMatrix in quadrants">
                 <div class="col col-33 center" ng-repeat="quadrant in quadrantMatrix">
-                    <a href="#/tab/quadrants/{{quadrant.id}}" class="button button-icon balanced">
-                        <i class="fa fa-3x icon" ng-class="quadrant.icon"></i>
-                        {{quadrant.name}}
-                    </a>
+                    <div class="center pill padding-5">
+                        <a href="#/tab/quadrants/{{quadrant.id}}" class="button button-icon stable">
+                            <i class="fa fa-3x icon" ng-class="quadrant.icon"></i>
+                            {{quadrant.name}}
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -20,7 +20,14 @@ $dark:                            #444 !default;
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 $fa-font-path:        "../lib/font-awesome/fonts" !default;
 
-$balanced: #333333;
+
+$balanced: #20bf55; //rgba(32, 191, 85, 100)
+$color2: #0b4f6c; //rgba(11, 79, 108, 100)
+$color3: #01baef; //rgba(1, 186, 239, 100)
+$header: #fbfbff; //rgba(251, 251, 255, 100)
+$color5: #757575; //rgba(117, 117, 117, 100)
+
+//$balanced: #333333;
 $stable: #fff;
 $item-divider-bg:#f8f8f8;
 $light: #fff;
@@ -30,19 +37,19 @@ $assertive:#e0995e;
   .view-content {
     // background-image: url('../img/quadrantbg.jpg');
     // background-size: cover;
-    background-color: #f5F5f5;
+    background-color: $header;
   }
 }
 
 .view-background{
-    background-color: #f5F5f5;
+    background-color: $header;
 }
 
 .view-with-bg{
   .pane {
     // background-image: url('../img/quadrantbg.jpg') !important;
     // background-size: cover !important;
-    background-color: #333
+    background-color: $color5
   }
 }
 
@@ -102,6 +109,13 @@ $assertive:#e0995e;
 svg{
     display: block;
     margin: auto;
+}
+
+.pill{
+    height:80px;
+    width:100%;
+    background-color:$color2;
+    border-radius:15%;
 }
 
 .circle{
