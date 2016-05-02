@@ -66,22 +66,31 @@ angular.module('starter.services', [])
         find: find
     };
 }])
-.factory('SQLliteDatabase',['$cordovaSQLite','$q',function(cordovaSQLite,$q){
+.factory('SQLliteDatabase',['$cordovaSQLite','$q','$timeout',function(cordovaSQLite,$q,$timeout){
   var _db;
   var _data = {};
   var _goals = [];
 
   function initDB() {
-    if (window.sqlitePlugin !== undefined) {          
-      _db = cordovaSQLite.openDB("quadrant.db", "1.0", "Demo", 1);
-    }
-    else{
-      _db = window.openDatabase('quadrant.db', '1.0', 'database', -1);
-    }
-    // var drop = 'DROP TABLE IF EXISTS goals';
-    // query(drop);
-    var q = "CREATE TABLE IF NOT EXISTS goals(id integer primary key,quadrantId integer,quadrantName text,quadrantDesc text,isUrgent boolean,isImportant boolean, description text,priority int)";
-    query(q);
+    var deffered = $q.defer();
+      $timeout(function(){
+        if (window.sqlitePlugin !== undefined) {          
+            _db = window.sqlitePlugin.openDatabase({ name: "quadrants.db", location: 2, createFromLocation: 1 });
+      }
+      else{
+        _db = window.openDatabase('quadrant.db', '1.0', 'database', -1);
+      }
+      
+      // var drop = 'DROP TABLE IF EXISTS goals';
+      // query(drop);
+      // var q = "CREATE TABLE IF NOT EXISTS goals(id integer primary key,quadrantId integer,quadrantName text,quadrantDesc text,isUrgent boolean,isImportant boolean, description text,priority int)";
+      // query(q);
+      deffered.resolve();
+      },3000);
+      
+      return deffered.promise;
+    
+    
   };
   
   // var query = function(query, bindings) {
@@ -101,11 +110,20 @@ angular.module('starter.services', [])
   var query = function(query, bindings) {
         bindings = typeof bindings !== 'undefined' ? bindings : [];
         var deferred = $q.defer();
-        return cordovaSQLite.execute(_db, query, bindings); 
+        initDB().then(function(){
+          var data = cordovaSQLite.execute(_db, query, bindings);
+          deferred.resolve(data);
+        });     
+        return deferred.promise;    
     };
   
   function getdata(){
-    return query('SELECT * FROM goals');
+    var deferred = $q.defer();
+    
+    query('SELECT * FROM goals').then(function(result){
+      deferred.resolve(result);
+    });
+    return deferred.promise;
   };
   
   
@@ -127,9 +145,13 @@ angular.module('starter.services', [])
   }
   
   function find(quadrantId) {
+    var deferred = $q.defer();
     var q = 'SELECT * FROM goals where quadrantId in (?,?,?,?)';
     var bindings = [1,2,3,4];
-    return query(q,bindings);
+    query(q,bindings).then(function(result){
+      deferred.resolve(result);
+    });
+    return deferred.promise;
   }
 
   return {
@@ -253,7 +275,7 @@ angular.module('starter.services', [])
     }
   }
 })
-.factory('Goals',['SQLliteDatabase','_','$q',function(Database,_,$q) {
+.factory('Goals',['SQLliteDatabase','_','$q','$sqliteService',function(Database,_,$q,sqliteService) {
   var goals = [];
   var fetchAll = function(result) {
         var output = [];
@@ -270,7 +292,11 @@ angular.module('starter.services', [])
   
   return{
     all: function() {
-      return Database.getdata();
+      var deffered = $q.defer();
+      Database.getdata().then(function(data){
+        deffered.resolve(data);
+      });
+      return deffered.promise;
     },
     add: function(goal){
       return Database.add(goal);
@@ -281,7 +307,7 @@ angular.module('starter.services', [])
     find: function(quadrantId){
       var deffered = $q.defer();
       var quadrants = [];
-      Database.find(quadrantId).then(function(data){
+      Database.find().then(function(data){
           var goalsByQuadrant = fetchAll(data);
           var resultByQuadrant = _.groupBy(goalsByQuadrant,function(quadrant){
             return quadrant.quadrantId;

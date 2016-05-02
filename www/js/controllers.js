@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope, Quadrants, Goals,$q,$state,SQLliteDatabase) {
-  SQLliteDatabase.initDB();
+  //SQLliteDatabase.initDB();
   var quadrants = Quadrants.all();
   $scope.message = '';
   function getOptions(title){
