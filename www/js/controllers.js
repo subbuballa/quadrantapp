@@ -274,7 +274,7 @@ catch(e){
     return false;
   }
 })
-.controller('GoalsCtrl', function($scope,$ionicPlatform, Goals,GoalDataFactory) {
+.controller('GoalsCtrl', function($scope,$ionicPlatform, Goals,GoalDataFactory,_) {
   $scope.hasGoals = null;  
   $scope.showSpinner = null; 
   $scope.message = '';
@@ -283,7 +283,7 @@ catch(e){
         angular.forEach(GoalDataFactory.goals,function(goal,index){
           goal.quadrantClass = getCssClass(goal);
         });
-        $scope.goals = GoalDataFactory.goals;
+        $scope.goals = _.sortBy(GoalDataFactory.goals,'quadrantClass');
         $scope.showSpinner = false;
         if(GoalDataFactory.goals.length > 0){
           $scope.hasGoals = true;
