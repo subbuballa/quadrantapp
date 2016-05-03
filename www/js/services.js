@@ -110,11 +110,22 @@ angular.module('starter.services', [])
         bindings = typeof bindings !== 'undefined' ? bindings : [];
         var deferred = $q.defer();
         initDB().then(function (_db) {
-            var data = cordovaSQLite.execute(_db, query, bindings);
-            deferred.resolve(data);
+            cordovaSQLite.execute(_db, query, bindings).then(function(data){
+                  deferred.resolve(data);
+            });
         });
         return deferred.promise;
     };
+    
+    function createDB(){
+      var q = "CREATE TABLE IF NOT EXISTS goals(id integer primary key,quadrantId integer,quadrantName text,quadrantDesc text,isUrgent boolean,isImportant boolean, description text,priority int)";
+      var deferred = $q.defer();
+
+      query(q).then(function (result) {
+          deferred.resolve(result);
+      });
+      return deferred.promise;
+    }
 
     function getdata() {
         var deferred = $q.defer();
@@ -155,6 +166,7 @@ angular.module('starter.services', [])
 
     return {
         initDB: initDB,
+        createDB: createDB,
         getdata: getdata,
         add: add,
         update: update,

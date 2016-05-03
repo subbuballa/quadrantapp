@@ -21,8 +21,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 $fa-font-path:        "../lib/font-awesome/fonts" !default;
 
 
-$balanced: #20bf55; //rgba(32, 191, 85, 100)
-$color2: #0b4f6c; //rgba(11, 79, 108, 100)
+$balanced: #FF5E5B; //rgba(32, 191, 85, 100)
+$color2: #FFED66; //rgba(11, 79, 108, 100)
 $color3: #01baef; //rgba(1, 186, 239, 100)
 $header: #fbfbff; //rgba(251, 251, 255, 100)
 $color5: #757575; //rgba(117, 117, 117, 100)
@@ -84,7 +84,7 @@ $assertive:#e0995e;
     color: darkorange;
 }
 .quadrant4{
-    color: darkgrey;
+    color: green;
 }
 .right{
     float: right;
@@ -114,7 +114,7 @@ svg{
 .pill{
     height:80px;
     width:100%;
-    background-color:$color2;
+    background-color:$balanced;
     border-radius:15%;
 }
 
@@ -153,7 +153,7 @@ svg{
             line-height: 2em;
         }
         .step {
-                background: #EF0BD8;
+                background: #00CECB;
                 border-radius: 6.6em;
                 -moz-border-radius: 6.8em;
                 -webkit-border-radius: 6.8em;
@@ -172,6 +172,34 @@ svg{
             left: 50%;
             height: 100%;
     }
+    .q1::before{
+            content: '';
+            width:10px;
+            height:20px;
+            background-color:#D00000;
+            float: left;
+        }
+    .q2::before{
+        content: '';
+        width:10px;
+        height:20px;
+        background-color:#FFBA08;
+        float: left;
+    }
+    .q3::before{
+        content: '';
+        width:10px;
+        height:20px;
+        background-color:#3F88C5;
+        float: left;
+    }
+    .q4::before{
+        content: '';
+        width:10px;
+        height:20px;
+        background-color:green;
+        float: left;
+        }
 //trdy
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";

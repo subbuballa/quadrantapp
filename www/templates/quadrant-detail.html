@@ -5,7 +5,7 @@
         </button>
     </ion-nav-buttons>
   <ion-content class="padding view-content">
-    <div class="item item-divider"> 
+    <div class="item item-divider balanced"> 
         {{goalDetails.quadrant.name}}
     </div>
     <div>
@@ -14,7 +14,7 @@
           <input type="text" placeholder="Enter a goal for the quadrant" class="transparent" ng-model="goalDetails.description">
         </label>
         <div>
-         <div class="item item-divider"> 
+         <div class="item item-divider balanced"> 
            Set Urgency
         </div>
         <div class="list">
@@ -23,12 +23,12 @@
         </div>
         </div>
         <div>
-           <div class="item item-divider"> 
+           <div class="item item-divider balanced"> 
               Set Priority
               <i class="ion-plus-circled balanced pull-right medium" ng-click="modal.show()"></i>
            </div>
            <div class="list">
-             <ion-radio ng-repeat="priority in priorities" ng-model="goalDetails.selectedPriority" ng-value="priority.id" class="balanced">{{priority.text}}</ion-radio>
+             <ion-radio ng-repeat="priority in priorities" ng-model="goalDetails.selectedPriority" ng-value="priority.id" class="dark">{{priority.text}}</ion-radio>
            </div>
         </div>
       </div>

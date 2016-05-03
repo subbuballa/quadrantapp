@@ -277,8 +277,12 @@ catch(e){
 .controller('GoalsCtrl', function($scope,$ionicPlatform, Goals,GoalDataFactory) {
   $scope.hasGoals = null;  
   $scope.showSpinner = null; 
+  $scope.message = '';
   $scope.goals = Goals.all().then(function(data){
         GoalDataFactory.goals = fetchAll(data);
+        angular.forEach(GoalDataFactory.goals,function(goal,index){
+          goal.quadrantClass = getCssClass(goal);
+        });
         $scope.goals = GoalDataFactory.goals;
         $scope.showSpinner = false;
         if(GoalDataFactory.goals.length > 0){
@@ -286,6 +290,7 @@ catch(e){
         }
         else{
           $scope.hasGoals = false;
+          $scope.message = 'Currently you dont have any goals, set goals in My Quadrants';
         }
       });;
   
@@ -315,9 +320,9 @@ catch(e){
   $scope.hasGoals = function(){
     return $scope.goals.length > 0;
   };
-  $scope.getCssClass = function(goal) {
-    var isUrgent = goal.isUrgent;
-    var isImportant = goal.isImportant;
+  function getCssClass(goal) {
+    var isUrgent = goal.isUrgent == "true";
+    var isImportant = goal.isImportant == "true";
     if(isUrgent&&isImportant) return 'quadrant1';
     if(isUrgent&&!isImportant) return 'quadrant2';
     if(!isUrgent&&isImportant) return 'quadrant3';

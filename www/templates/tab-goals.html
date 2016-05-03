@@ -4,14 +4,14 @@
         Goals
     </div>-->
     <div class="message-container" ng-show="!hasGoals">
-        <p class="message">Currently you dont have any goals, set goals in My Quadrants</p>
+        <p class="message">{{message}}</p>
     </div>
        <ion-list ng-show="hasGoals">
-            <ion-item class="item-remove-animate" ng-repeat="goal in goals" type="item-text-wrap" href="#">
-                <h2 class="balanced" ng-class="getCssClass(goal)">{{goal.quadrantName}} - {{goal.description}}</h2>
-                <span ng-show="goal.isUrgent=='true'" class="balanced"><i class="icon ion-information-circled balanced"></i> Urgent</span>
-                <span ng-show="goal.isImportant=='true'" class="balanced"><i class="icon ion-information-circled balanced"></i> Important</span>
-                <ion-option-button class="button-assertive icon ion-trash-a" ng-click="deleteGoal(goal)"></ion-option-button>
+            <ion-item class="item-remove-animate" ng-class="{ quadrant1:'q1', quadrant2: 'q2',quadrant3: 'q3', quadrant4: 'q4'}[goal.quadrantClass]" ng-repeat="goal in goals" type="item-text-wrap" href="#">
+                <h2 class="dark" ng-class="getCssClass(goal)">{{goal.quadrantName}} - {{goal.description}}</h2>
+                <!--<span ng-show="goal.isUrgent=='true'" class="dark"><i class="icon ion-information-circled balanced"></i> Urgent</span>
+                <span ng-show="goal.isImportant=='true'" class="dark"><i class="icon ion-information-circled balanced"></i> Important</span>-->
+                <ion-option-button class="button-balanced icon ion-trash-a" ng-click="deleteGoal(goal)"></ion-option-button>
             </ion-item>
     </ion-list>
     </ion-content>
