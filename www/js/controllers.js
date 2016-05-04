@@ -330,6 +330,9 @@ catch(e){
     return '';
   }
 })
+    .controller('GoalDetailCtrl', function ($scope) {
+        
+    })
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
     showHistory: true

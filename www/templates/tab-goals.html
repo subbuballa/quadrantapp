@@ -7,7 +7,7 @@
         <p class="message">{{message}}</p>
     </div>
        <ion-list ng-show="hasGoals">
-            <ion-item class="item-remove-animate" ng-class="{ quadrant1:'q1', quadrant2: 'q2',quadrant3: 'q3', quadrant4: 'q4'}[goal.quadrantClass]" ng-repeat="goal in goals" type="item-text-wrap" href="#">
+            <ion-item class="item-remove-animate" ng-class="{ quadrant1:'q1', quadrant2: 'q2',quadrant3: 'q3', quadrant4: 'q4'}[goal.quadrantClass]" ng-repeat="goal in goals" type="item-text-wrap" href="#/tab/goals/{{goal.id}}">
                 <h2 class="dark" ng-class="getCssClass(goal)">{{goal.quadrantName}} - {{goal.description}}</h2>
                 <!--<span ng-show="goal.isUrgent=='true'" class="dark"><i class="icon ion-information-circled balanced"></i> Urgent</span>
                 <span ng-show="goal.isImportant=='true'" class="dark"><i class="icon ion-information-circled balanced"></i> Important</span>-->

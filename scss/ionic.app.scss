@@ -18,7 +18,7 @@ $dark:                            #444 !default;
 // $positive:                        pink !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
-$fa-font-path:        "../lib/font-awesome/fonts" !default;
+$fa-font-path: "../lib/font-awesome/fonts" !default;
 
 
 $balanced: #FF5E5B; //rgba(32, 191, 85, 100)
@@ -29,73 +29,81 @@ $color5: #757575; //rgba(117, 117, 117, 100)
 
 //$balanced: #333333;
 $stable: #fff;
-$item-divider-bg:#f8f8f8;
+$item-divider-bg: #f8f8f8;
 $light: #fff;
-$assertive:#e0995e;
+$assertive: #e0995e;
 
-.view-with-bg{
-  .view-content {
-    // background-image: url('../img/quadrantbg.jpg');
-    // background-size: cover;
+.view-with-bg {
+    .view-content {
+        // background-image: url('../img/quadrantbg.jpg');
+        // background-size: cover;
+        background-color: $header;
+    }
+}
+
+.view-background {
     background-color: $header;
-  }
 }
 
-.view-background{
-    background-color: $header;
+.view-with-bg {
+    .pane {
+        // background-image: url('../img/quadrantbg.jpg') !important;
+        // background-size: cover !important;
+        background-color: $color5;
+    }
 }
 
-.view-with-bg{
-  .pane {
-    // background-image: url('../img/quadrantbg.jpg') !important;
-    // background-size: cover !important;
-    background-color: $color5
-  }
-}
-
-.larger{
+.larger {
     font-size: 50px;
 }
 
-.medium{
+.medium {
     font-size: 25px;
 }
 
 .quadrant-panel {
-    .button{
+    .button {
         font-size: 15px;
         line-height: 10px; // Add
     }
+
     .button-icon {
-        .icon{
+        .icon {
             display: block;
             font-size: 50px;
             margin-bottom: 3px !important;
         }
     }
 }
-.quadrant1{
+
+.quadrant1 {
     color: red;
 }
-.quadrant2{
+
+.quadrant2 {
     color: orangered;
 }
-.quadrant3{
+
+.quadrant3 {
     color: darkorange;
 }
-.quadrant4{
+
+.quadrant4 {
     color: green;
 }
-.right{
+
+.right {
     float: right;
 }
-.padding-5{
+
+.padding-5 {
     margin: 5px;
 }
 
-.message-container{
+.message-container {
     height: 100%;
 }
+
 .message {
     height: 200px;
     color: gray;
@@ -106,101 +114,108 @@ $assertive:#e0995e;
     margin-left: 20px;
 }
 
-svg{
+svg {
     display: block;
     margin: auto;
 }
 
-.pill{
-    height:80px;
-    width:100%;
-    background-color:$balanced;
-    border-radius:15%;
+.pill {
+    height: 80px;
+    width: 100%;
+    background-color: $balanced;
+    border-radius: 15%;
 }
 
-.circle{
-    >h2.numbered:before{
-            content: "";
-            position: relative;
-            left: 0px;
-            top: 1.5em;
-            width: 100%;
-            height: 2px;
-            background-color: #00C4CC;
-        }
-       >h2{ 
-            position: relative;
-            text-align: center;
-            font-size: 200%;
-            font-family: "Open Sans",sans-serif;
-            margin: 0px;
-       }
-    
-    >strong {
-            position: relative;
-            z-index: 1;
-            display: block;
-            width: 2em;
-            height: 2em;
-            margin: 0px auto;
-            border: 0.3em solid #FFF;
-            border-radius: 1.3em;
-            background-color: #00C4CC;
-            color: #FFF;
-            font-size: 120%;
-            font-weight: bold;
-            text-align: center;
-            line-height: 2em;
-        }
-        .step {
-                background: #00CECB;
-                border-radius: 6.6em;
-                -moz-border-radius: 6.8em;
-                -webkit-border-radius: 6.8em;
-                color: #ffffff;
-                display: block;
-                font-weight: bold;
-                line-height: 6.6em;
-                margin: 0 auto;
-                text-align: center;
-                width: 6.6em; 
-            }
-            text-align: center;
-            overflow: hidden;
-            vertical-align: middle;
-            top: 23%;
-            left: 50%;
-            height: 100%;
+.circle {
+    > h2.numbered:before {
+        content: "";
+        position: relative;
+        left: 0px;
+        top: 1.5em;
+        width: 100%;
+        height: 2px;
+        background-color: #00C4CC;
     }
-    .q1::before{
-            content: '';
-            width:10px;
-            height:20px;
-            background-color:#D00000;
-            float: left;
-        }
-    .q2::before{
-        content: '';
-        width:10px;
-        height:20px;
-        background-color:#FFBA08;
-        float: left;
+
+    > h2 {
+        position: relative;
+        text-align: center;
+        font-size: 200%;
+        font-family: "Open Sans",sans-serif;
+        margin: 0px;
     }
-    .q3::before{
-        content: '';
-        width:10px;
-        height:20px;
-        background-color:#3F88C5;
-        float: left;
+
+    > strong {
+        position: relative;
+        z-index: 1;
+        display: block;
+        width: 2em;
+        height: 2em;
+        margin: 0px auto;
+        border: 0.3em solid #FFF;
+        border-radius: 1.3em;
+        background-color: #00C4CC;
+        color: #FFF;
+        font-size: 120%;
+        font-weight: bold;
+        text-align: center;
+        line-height: 2em;
     }
-    .q4::before{
-        content: '';
-        width:10px;
-        height:20px;
-        background-color:green;
-        float: left;
-        }
-        
+
+    .step {
+        background: #00CECB;
+        border-radius: 6.6em;
+        -moz-border-radius: 6.8em;
+        -webkit-border-radius: 6.8em;
+        color: #ffffff;
+        display: block;
+        font-weight: bold;
+        line-height: 6.6em;
+        margin: 0 auto;
+        text-align: center;
+        width: 6.6em;
+    }
+
+    text-align: center;
+    overflow: hidden;
+    vertical-align: middle;
+    top: 23%;
+    left: 50%;
+    height: 100%;
+}
+
+.q1::before {
+    content: '';
+    width: 10px;
+    height: 20px;
+    background-color: #D00000;
+    float: left;
+}
+
+.q2::before {
+    content: '';
+    width: 10px;
+    height: 20px;
+    background-color: #FFBA08;
+    float: left;
+}
+
+.q3::before {
+    content: '';
+    width: 10px;
+    height: 20px;
+    background-color: #3F88C5;
+    float: left;
+}
+
+.q4::before {
+    content: '';
+    width: 10px;
+    height: 20px;
+    background-color: green;
+    float: left;
+}
+
 // .bar-header {
 //    height: 120px !important; /*just an example*/
 // }
@@ -212,32 +227,129 @@ svg{
 // }
 //trdy
 // Include all of Ionic
-.login{
-    font-family: 'Open Sans', sans-serif; 
-    background-image: url(../img/sign-in/background_pic.png); 
-    background-repeat: no-repeat; 
+.login {
+    font-family: 'Open Sans', sans-serif;
+    background-image: url(../img/sign-in/background_pic.png);
+    background-repeat: no-repeat;
     background-size: cover;
-    .title{ color: transparent; }
-    .content, .bar { background-color: transparent; border-bottom: none;}
-    .wrapper{ margin: 47px 1em; text-align: center; }
-    .card{ border-radius: 0px;}
-    .logo{ margin-bottom: 17px;}
-    .logo-img{ width: 50%; }
-    .text-center{ text-align: center; }
-    .div-table{ display: table; }
-    .table-row-group{ display: table-row-group; }
-    .table-row{ display: table-row; }
-    .table-cell{ display: table-cell; }
-    .icon-username{ background: url(../img/sign-in/user_icon.png) no-repeat scroll 8px center; padding-left: 40px !important; background-size: 16px;}
-    .icon-password{ background: url(../img/sign-in/lock_icon.png) no-repeat scroll 8px center; padding-left: 40px !important; background-size: 16px;}
-    .bar-transparent{ border-top: none !important; background: rgba(0,0,0,0.7); padding: 10px 37px; color: #fff; height: 18%; }
-    .icon-facebook{ background: url(../img/sign-in/facebook.png) no-repeat scroll center center; color: transparent !important; display: inline-block; background-size: 48px; height: 50px; width: 50px; }
-    .icon-twitter{ background: url(../img/sign-in/twitter.png) no-repeat scroll center center; color: transparent !important; display: inline-block; background-size: 48px; height: 50px; width: 50px; }
-    .icon-gplus{ background: url(../img/sign-in/gmail.png) no-repeat scroll center center; color: transparent !important; display: inline-block; background-size: 48px; height: 50px; width: 50px; }
-    #sign-in-form{ margin: 3px .8em; margin-bottom: 17px; }
-    #sign-in-form a{ font-size: 12px; font-weight: 700; padding: 0 5px; }
-    #sign-in-form>button{ color: #fff; margin: 17px 0; font-weight: bold; border-color: #333; background-color: #333; text-transform: uppercase;}
-    #sign-in-form>input{ margin-top: 17px; }
+
+    .title {
+        color: transparent;
+    }
+
+    .content, .bar {
+        background-color: transparent;
+        border-bottom: none;
+    }
+
+    .wrapper {
+        margin: 47px 1em;
+        text-align: center;
+    }
+
+    .card {
+        border-radius: 0px;
+    }
+
+    .logo {
+        margin-bottom: 17px;
+    }
+
+    .logo-img {
+        width: 50%;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .div-table {
+        display: table;
+    }
+
+    .table-row-group {
+        display: table-row-group;
+    }
+
+    .table-row {
+        display: table-row;
+    }
+
+    .table-cell {
+        display: table-cell;
+    }
+
+    .icon-username {
+        background: url(../img/sign-in/user_icon.png) no-repeat scroll 8px center;
+        padding-left: 40px !important;
+        background-size: 16px;
+    }
+
+    .icon-password {
+        background: url(../img/sign-in/lock_icon.png) no-repeat scroll 8px center;
+        padding-left: 40px !important;
+        background-size: 16px;
+    }
+
+    .bar-transparent {
+        border-top: none !important;
+        background: rgba(0,0,0,0.7);
+        padding: 10px 37px;
+        color: #fff;
+        height: 18%;
+    }
+
+    .icon-facebook {
+        background: url(../img/sign-in/facebook.png) no-repeat scroll center center;
+        color: transparent !important;
+        display: inline-block;
+        background-size: 48px;
+        height: 50px;
+        width: 50px;
+    }
+
+    .icon-twitter {
+        background: url(../img/sign-in/twitter.png) no-repeat scroll center center;
+        color: transparent !important;
+        display: inline-block;
+        background-size: 48px;
+        height: 50px;
+        width: 50px;
+    }
+
+    .icon-gplus {
+        background: url(../img/sign-in/gmail.png) no-repeat scroll center center;
+        color: transparent !important;
+        display: inline-block;
+        background-size: 48px;
+        height: 50px;
+        width: 50px;
+    }
+
+    #sign-in-form {
+        margin: 3px .8em;
+        margin-bottom: 17px;
+    }
+
+    #sign-in-form a {
+        font-size: 12px;
+        font-weight: 700;
+        padding: 0 5px;
+    }
+
+    #sign-in-form > button {
+        color: #fff;
+        margin: 17px 0;
+        font-weight: bold;
+        border-color: #333;
+        background-color: #333;
+        text-transform: uppercase;
+    }
+
+    #sign-in-form > input {
+        margin-top: 17px;
+    }
+
     .bar-tab {
         bottom: 0;
         display: table;
@@ -249,6 +361,151 @@ svg{
         border-bottom: 0;
     }
 }
+
+.goalDetail {
+    .title, .bar-nav > a {
+        color: #fff;
+        text-transform: uppercase;
+    }
+
+    .bar {
+        border-bottom: 0px;
+    }
+
+    .blue-nav {
+        background-color: #3481b3;
+    }
+
+    .article-image {
+        width: 100%;
+    }
+
+    .no-border {
+        border: none !important;
+    }
+
+    .no-padding {
+        padding: 0 !important;
+    }
+
+    .no-margin {
+        margin: 0 !important;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-upper {
+        text-transform: uppercase;
+    }
+
+    .table-view {
+        padding-left: 0;
+        margin-top: 0;
+        margin-bottom: 15px;
+        list-style: none;
+        background-color: #fff;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table-view-cell-full {
+        position: relative;
+        margin-bottom: -8px;
+        padding: 31px 0 4px 0;
+        overflow: hidden;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table-view-cell-social {
+        position: relative;
+        padding: 10px 15px 0 15px;
+        overflow: hidden;
+    }
+
+    .navigate-cell {
+        padding: 15px 15px 5px 15px;
+    }
+
+    .social-stat {
+        vertical-align: middle;
+        margin: 0 2px;
+        color: #9c9c9c;
+        font-size: 20px;
+    }
+
+    h1, .h1 {
+        font-size: 36px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        line-height: 1;
+    }
+
+    h1 {
+        margin: .67em 0;
+        font-size: 2em;
+    }
+
+
+    .backdrop-head {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 15;
+        background-color: rgba(0, 0, 0, .5) !important;
+    }
+
+    .article-header {
+        left: 0;
+        bottom: 0;
+        color: red;
+        width: 100%;
+        position: fixed;
+        padding: 5px 15px;
+    }
+
+    .article-header > h1 {
+        font-weight: normal;
+        font-size: 28px;
+        line-height: 1.2;
+    }
+
+    .article-author {
+        font-family: 'Open Sans', sans-serif;
+        color: #000;
+        font-size: 15px;
+    }
+
+    .article-author p {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 9px;
+        font-weight: bold !important;
+        color: #9c9c9c !important;
+        margin-top: -5px;
+    }
+
+    .article-stats > span {
+        color: #cdcdcd;
+        font-family: 'Droid Serif', serif;
+        font-size: 12px; /* font-weight: bold; */
+    }
+
+    .article-content {
+        font-family: 'Droid Serif', serif;
+    }
+
+    .article-content p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+}
+
 @import "www/lib/ionic/scss/ionic";
 @import "www/lib/font-awesome/scss/font-awesome";
 //@import "www/css/custom";
