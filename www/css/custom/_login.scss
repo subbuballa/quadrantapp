@@ -1,0 +1,23 @@
+.login{
+    .title{ color: transparent; }
+    .content, .bar { background-color: transparent; border-bottom: none;}
+    .wrapper{ margin: 47px 1em; text-align: center; }
+    .card{ border-radius: 0px;}
+    .logo{ margin-bottom: 17px;}
+    .logo-img{ width: 50%; }
+    .text-center{ text-align: center; }
+    .div-table{ display: table; }
+    .table-row-group{ display: table-row-group; }
+    .table-row{ display: table-row; }
+    .table-cell{ display: table-cell; }
+    .icon-username{ background: url(../images/sign-in/user_icon.png) no-repeat scroll 8px center; padding-left: 40px !important; background-size: 16px;}
+    .icon-password{ background: url(../images/sign-in/lock_icon.png) no-repeat scroll 8px center; padding-left: 40px !important; background-size: 16px;}
+    .bar-transparent{ border-top: none !important; background: rgba(0,0,0,0.7); padding: 10px 37px; color: #fff; height: 18%; }
+    .icon-facebook{ background: url(../images/sign-in/facebook.png) no-repeat scroll center center; color: transparent !important; display: inline-block; background-size: 48px; height: 50px; width: 50px; }
+    .icon-twitter{ background: url(../images/sign-in/twitter.png) no-repeat scroll center center; color: transparent !important; display: inline-block; background-size: 48px; height: 50px; width: 50px; }
+    .icon-gplus{ background: url(../images/sign-in/gmail.png) no-repeat scroll center center; color: transparent !important; display: inline-block; background-size: 48px; height: 50px; width: 50px; }
+    #sign-in-form{ margin: 3px .8em; margin-bottom: 17px; }
+    #sign-in-form a{ font-size: 12px; font-weight: 700; padding: 0 5px; }
+    #sign-in-form>button{ color: #fff; margin: 17px 0; font-weight: bold; border-color: #333; background-color: #333; text-transform: uppercase;}
+    #sign-in-form>input{ margin-top: 17px; }
+}

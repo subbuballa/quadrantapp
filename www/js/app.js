@@ -97,7 +97,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'nvd3', 'lokijs', 'underscore',
     url: '/account',
     views: {
       'tab-account': {
-        templateUrl: 'templates/tab-account.html',
+        templateUrl: 'templates/tab-login.html',
         controller: 'AccountCtrl'
       }
     }

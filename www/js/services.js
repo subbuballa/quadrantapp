@@ -91,21 +91,7 @@ angular.module('starter.services', [])
 
 
     };
-
-    // var query = function(query, bindings) {
-    //       bindings = typeof bindings !== 'undefined' ? bindings : [];
-    //       var deferred = $q.defer();
-
-    //       _db.transaction(function(transaction) {
-    //           transaction.executeSql(query, bindings, function(transaction, result) {
-    //               deferred.resolve(result);
-    //           }, function(transaction, error) {
-    //               deferred.reject(error);
-    //           });
-    //       });
-
-    //       return deferred.promise;
-    //   };
+    
     var query = function (query, bindings) {
         bindings = typeof bindings !== 'undefined' ? bindings : [];
         var deferred = $q.defer();
@@ -149,9 +135,13 @@ angular.module('starter.services', [])
     }
 
     function remove(data) {
+        var deferred = $q.defer();
         var q = 'DELETE FROM goals WHERE ID = ?'
         var bindings = [data.id];
-        return query(q, bindings);
+        query(q, bindings).then(function (result) {
+            deferred.resolve(result);
+        });
+        return deferred.promise;;
     }
 
     function find(quadrantId) {
@@ -313,7 +303,11 @@ angular.module('starter.services', [])
             return Database.add(goal);
         },
         remove: function (goal) {
-            Database.remove('goal', goal);
+            var deffered = $q.defer();
+            Database.remove('goal', goal).then(function(){
+                deferred.resolve();
+            });
+            return deffered.promise;
         },
         find: function (quadrantId) {
             var deffered = $q.defer();
