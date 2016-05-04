@@ -1,0 +1,20 @@
+body{ font-family: 'PT Sans', 'Open Sans', sans-serif; }
+ul.table-view{ border-top: none !important; margin-bottom: 0px !important; }
+.badge{ color: #bdbdbd !important; }
+.icon{ font-size: 20px !important; }
+.content > .table-view:first-child{ margin-top: 0px !important; }
+.title, .bar-nav>a{ color: #fff; text-transform: uppercase;}
+.blue-nav{ background-color: #3481b3;}
+.bar-header-secondary>h3{ text-transform: uppercase; font-weight: 700; letter-spacing: 1px;}
+.bar-standard{ border-bottom: none !important; height: 40px; padding-top: 15px;}
+.article-image{ width: 100%;}
+.no-border{border: none !important;}
+.text-center{ text-align: center;}
+.table-view-cell-full:first-child{ padding-top: 10px; }
+.table-view-cell-full{ position: relative; padding: 20px 0 3px 0; overflow: hidden; border-bottom: 1px solid #ddd; }
+.table-view-cell-social{ position: relative; padding: 2px 15px 0 15px; overflow: hidden; }
+.navigate-cell{	padding-left: 12px; /* border-bottom: 1px solid #ddd; */ }
+.article-title{ font-size: 18px; font-weight: 800; line-height: 1; }
+.article-title p{ font-size: 12px; font-weight: 500 !important; }
+.date{ color: #000; text-transform: uppercase; }
+.social-stat{ vertical-align: middle; margin: 0 5px; /* font-weight: bold; */ color: #888; }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Photo List</title>
+
+	<!-- Sets initial viewport load and disables zooming  -->
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+	<!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<!-- Include the compiled Ratchet CSS -->
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link href="css/ratchet.css" rel="stylesheet">
+
+	<!-- Include the apps css -->
+	<link href="css/photo-list.css" rel="stylesheet" >
+
+	<!-- Include the compiled Ratchet JS -->
+	<script src="js/ratchet.js"></script>
+</head>
+<body>
+	<!-- Make sure all your bars are the first things in your <body> -->
+	<header class="bar bar-nav blue-nav">
+		<a href="#" class="icon icon-left-nav pull-left"></a>
+		<span class="pull-right" style="margin-right: 5px;">
+			<a href="#" class="icon icon-grid icon-disable"></a>
+			<a href="#" class="icon icon-list"></a>
+		</span>
+		<h1 class="title">gallery</h1>
+	</header>
+	<div class="bar bar-standard bar-header-secondary">
+		<form class="input-group">
+			<div class="input-row">
+				<span class="icon icon-search pull-left"></span>
+				<input type="text" name="filter" class="pull-left" placeholder="Filter">
+			</div>	
+		</form>
+	</div>
+	<div class="content">
+		<ul class="table-view">
+			<li class="table-view-cell media">
+				<img class="media-object pull-left" src="images/photo-list/mountain_small.png">
+				<div class="media-body">
+					<h4>Mountain View</h4>
+					<h5>Taken 10.14.14</h5>
+					<p>This shot was taken on our last day of vacation. We ...</p>
+				</div>
+			</li>
+			<li class="table-view-cell media">
+				<img class="media-object pull-left" src="images/photo-list/trees_small.png">
+				<div class="media-body">
+					<h4>View from the Top</h4>
+					<h5>Taken 10.14.14</h5>
+					<p>We hiked up to the top of the tallest mountain. We ...</p>
+				</div>
+			</li>
+			<li class="table-view-cell media">
+				<img class="media-object pull-left" src="images/photo-list/building_small.png">
+				<div class="media-body">
+					<h4>Downtown</h4>
+					<h5>Taken 10.12.14</h5>
+					<p>The downtown area was quaint and peacefull.</p>
+				</div>
+			</li>
+			<li class="table-view-cell media">
+				<img class="media-object pull-left" src="images/photo-list/nails_small.png">
+				<div class="media-body">
+					<h4>Anna's Nails</h4>
+					<h5>Taken 10.14.14</h5>
+					<p>Anna's nails -- so good they had to be documented.</p>
+				</div>
+			</li>
+			<li class="table-view-cell media">
+				<img class="media-object pull-left" src="images/photo-list/love_small.png">
+				<div class="media-body">
+					<h4>Love Bracelet</h4>
+					<h5>Taken 10.14.14</h5>
+					<p>Note to self: Remember to buy this for Jen's birthday.</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

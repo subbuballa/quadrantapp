@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Sign In</title>
+
+	<!-- Sets initial viewport load and disables zooming  -->
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+	<!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<!-- Include the compiled Ratchet CSS -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link href="css/ratchet.css" rel="stylesheet">
+
+	<!-- Include the apps css -->
+	<link href="css/sign-in.css" rel="stylesheet" >
+
+	<!-- Include the compiled Ratchet JS -->
+	<script src="js/ratchet.js"></script>
+
+</head>
+<body>
+	<!-- Make sure all your bars are the first things in your <body> -->
+	<header class="bar">
+		<h1 class="title">Cata</h1>
+	</header>
+
+	<!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
+	<div class="content">
+		<div class="wrapper">
+			<div class="logo">
+				<img class="logo-img" src="images/sign-in/your_logo.png" alt="UI Deck Logo" />
+			</div>
+			<div class="card">
+				<form id="sign-in-form" class="input-group">
+					<input type="text" class="icon-username" name="username" placeholder="username">
+					<input type="password" class="icon-password" name="password" placeholder="password">
+					<button class="btn btn-block">sign in</button>
+					<a href="#">Create an Account</a> | <a href="#">Lost Password?</a>
+				</form>
+			</div>
+		</div>
+		<nav class="bar bar-tab bar-footer bar-transparent">
+			<div class="table-row-group">
+				<div class="table-row">
+					<div class="table-cell text-center">
+						<small>
+							<strong>SIGN IN WITH</strong>
+						</small>
+					</div>
+				</div>
+				<div class="table-row">
+					<div class="table-cell text-center">
+						<a class="icon-facebook" href="#">facebook</a>
+						<a class="icon-twitter" href="#">twitter</a>
+						<a class="icon-gplus" href="#">google</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</div>
+</body>
+</html>

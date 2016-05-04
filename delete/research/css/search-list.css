@@ -1,0 +1,33 @@
+body{ font-family: 'Open Sans', sans-serif;}
+input[type="text"]{ height: 30px;}
+.title, .bar-nav>a { color: #fff; text-transform: uppercase;}
+.text-center{ text-align: center; }
+.blue-nav{ background-color: #3481b3;}
+.blue-nav .icon{ color: #fff;}
+.bar-header-secondary {background-color: #e9e9e9;}
+.bar-standard{ border-bottom: none !important; height: 65px; padding-top: 15px;}
+.bar-header-secondary ~ .content { padding-top: 108px; }
+.bar-button{ border-bottom: 1px solid #e4eff5; width: 100%; text-align: center; vertical-align: middle; padding: 10px; }
+.bar-button .btn{ margin: 0px 2px 0px 2px; border-radius: 5px !important;}
+.bar-button .icon { font-size: 20px !important; }
+.input-row{ height: 30px !important; border-bottom: none !important;}
+.input-row input{ float: left !important; width: 80%;font-size: 13px; }
+.input-row>.btn, .input-row span.icon{ padding: 7px; color: #cecece;}
+.input-row > .icon{ font-size: 16px !important;}
+.icon-grid{ font-size: 22px; }
+.icon-disable{ color: #3071a9 !important; }
+.icon-pin{ /* margin-left: 6px; margin-right: 6px; */}
+.table-view{ border-bottom: none !important;}
+.table-view-cell { padding-right: 0px !important;  padding-bottom: 0px !important; padding-left: 0px !important; padding-top: 5px; border: none;}
+.table-view-cell:first-child {padding-top: 10px;}
+.media > img { width: 25%; padding: 0px 5px; margin-left: 5px;}
+.media-body { margin-right: 10px; font-family: 'PT Sans', sans-serif;}
+.media-body > h4{ color: #3481b3; margin-bottom: 5px; font-size: 14px;}
+.media-body > h5{ color: #e29652; margin-top: 2px; margin-bottom: 2px !important;}
+.media-body > h5 .icon{ font-size: 14px !important;}
+.media-body > p{ font-size: 12px; line-height: 1.5; }
+.media-foot{ margin-top: 7px; width: 100%; display: inline-table;}
+.media-foot td{ padding: 2px; }
+.btn-block{ border-radius: 0px !important;}
+.btn-default { color: #666; background-color: #e9e9e9; border: 1px solid #e9e9e9; text-transform: uppercase; font-size: 12px !important;}
+.btn-default:active, .btn-default.active { color: #000; background-color: #cecece; border: 1px solid #cecece; }

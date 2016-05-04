@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Product Detail</title>
+
+	<!-- Sets initial viewport load and disables zooming  -->
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+	<!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<!-- Include the compiled Ratchet CSS -->
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link href="css/ratchet.css" rel="stylesheet">
+
+	<!-- Include the apps css -->
+	<link href="css/product.css" rel="stylesheet" >
+
+	<!-- Include the compiled Ratchet JS -->
+	<script src="js/ratchet.js"></script>
+</head>
+<body>
+	<!-- Make sure all your bars are the first things in your <body> -->
+	<header class="bar bar-nav blue-nav">
+		<a href="shop-list.html" class="icon icon-left-nav pull-left" data-transition="slide-in" alt="Back to Products List"></a>
+		<span class="pull-right" style="margin-right: 5px;">
+			<a href="#" class="icon icon-search"></a>
+			<a href="#" class="icon icon-shoping-cart" ></a>
+		</span>
+		<h1 class="title">Product Detail</h1>	
+	</header>
+	<div class="content">
+		<div id="big-image">
+			<img src="images/product/pencils_big.png" alt="">
+		</div>
+		<section id="photos">
+			<img src="images/product/thumbnail_1.png" alt="">
+			<img src="images/product/thumbnail_2.png" alt="">
+			<img src="images/product/thumbnail_3.png" alt="">
+			<img src="images/product/thumbnail_4.png" alt="">			
+		</section>
+		<div id="product-detail">
+			<ul class="table-view no-border no-margin">
+				<li class="table-view-cell media">
+					<div class="right-group">
+						<button class="btn pull-right"><span class="icon icon-hearth-small"></span></button>
+					</div>
+					<a class="navigate-right" href="#">
+						<div class="media-body">
+							<h3>Colored Pencil Mega Pack</h3>
+							<h4>$28.00</h4>
+							<p>Lorem ipsum Dolore labore esse sit ex sunt magna anim fugiat elit cillum consequat consequat culpa amet enim Excepteur.</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<form class="text-center">
+				<button class="btn btn-outlined btn-primary">BUY NOW</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

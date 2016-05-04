@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>To-do List</title>
+
+	<!-- Sets initial viewport load and disables zooming  -->
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+	<!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<!-- Include the compiled Ratchet CSS -->
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link href="css/ratchet.css" rel="stylesheet">
+
+	<!-- Include the apps css -->
+	<link href="css/todo-list.css" rel="stylesheet" >
+
+	<!-- Include the compiled Ratchet JS -->
+	<script src="js/ratchet.js"></script>
+</head>
+<body>
+	<!-- Make sure all your bars are the first things in your <body> -->
+	<header class="bar bar-nav blue-nav">
+		<a href="#menu-popover" class="icon icon-bars pull-left"></a>
+		<h1 class="title">to-do list</h1>	
+	</header>
+	<div class="bar bar-standard bar-header-secondary">
+		<form class="input-group">
+			<div class="input-row">
+				<input type="text" name="new-item" class="pull-left" placeholder="Add New Item">
+				<button type="button" name="btn-add" class="btn btn-primary pull-right">
+					<span class="icon icon-plus"></span>
+				</button>
+			</div>	
+		</form>
+	</div>
+	<div class="content">
+		<ul class="table-view">
+			<li class="table-view-cell">
+				<div class="square-checkbox">
+					<input type="checkbox" value="" id="chk-1" name="item[]" />
+					<label for="chk-1"></label>
+				</div>
+				 Sprouted Grain Bread
+				<span class="btn btn-outlined">GROCERY</span>
+			</li>
+			<li class="table-view-cell">
+				<div class="square-checkbox">
+					<input type="checkbox" value="" id="chk-2" name="item[]" />
+					<label for="chk-2"></label>
+				</div> Vanilla Almound Milk
+				<span class="btn btn-outlined">GROCERY</span>
+			</li>
+			<li class="table-view-cell">
+				<div class="square-checkbox">
+					<input type="checkbox" value="" id="chk-3" name="item[]" />
+					<label for="chk-3"></label>
+				</div> Granola 
+				<span class="btn btn-outlined">GROCERY</span>
+			</li>
+			<li class="table-view-cell">
+				<div class="square-checkbox">
+					<input type="checkbox" value="" id="chk-4" name="item[]" />
+					<label for="chk-4"></label>
+				</div> Pick up dry cleaning
+				<span class="btn btn-outlined">ERRANDS</span>
+			</li>
+			<li class="table-view-cell">
+				<div class="square-checkbox">
+					<input type="checkbox" value="" id="chk-5" name="item[]" />
+					<label for="chk-5"></label>
+				</div> Clean kitty litter
+				<span class="btn btn-outlined">CHORES</span>
+			</li>
+			<li class="table-view-cell">
+				<div class="square-checkbox">
+					<input type="checkbox" value="" id="chk-6" name="item[]" />
+					<label for="chk-6"></label>
+				</div> Win Lottery
+				<span class="btn btn-outlined">DREAMS</span>
+			</li>
+			<li class="table-view-cell">
+				<div class="square-checkbox">
+					<input type="checkbox" value="" id="chk-7" name="item[]" />
+					<label for="chk-7"></label>
+				</div> Wash windows
+				<span class="btn btn-outlined">CHORES</span>
+			</li>
+			<li class="table-view-cell checked">
+				<div class="square-checkbox">
+					<input type="checkbox" value="" id="chk-8" name="item[]" checked />
+					<label for="chk-8"></label>
+				</div> Call Mom
+				<span class="btn btn-outlined">FAMILY</span>
+			</li>
+			<li class="table-view-cell checked">
+				<div class="square-checkbox">
+					<input type="checkbox" value="" id="chk-9" name="item[]" checked />
+					<label for="chk-9"></label>
+				</div> Mop floor
+				<span class="btn btn-outlined">CHORES</span>
+			</li>
+			<li class="table-view-cell checked">
+				<div class="square-checkbox">
+					<input type="checkbox" value="" id="chk-10" name="item[]" checked />
+					<label for="chk-10"></label>
+				</div> Fix washing machine
+				<span class="btn btn-outlined">CHORES</span>
+			</li>
+		</ul>
+	</div>
+	<div id="menu-popover" class="popover">
+		<ul class="table-view">
+			<li class="table-view-cell">Menu 1</li>
+			<li class="table-view-cell">Menu 2</li>
+			<li class="table-view-cell">Menu 3</li>
+			<li class="table-view-cell">Menu 4</li>
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Articles List</title>
+
+	<!-- Sets initial viewport load and disables zooming  -->
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+	<!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<!-- Include the compiled Ratchet CSS -->
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link href="css/ratchet.css" rel="stylesheet">
+
+	<!-- Include the cata font -->
+	<!-- <link href="css/cata-font.css" rel="stylesheet">	 -->
+
+	<!-- Include the apps css -->
+	<link href="css/articles-list.css" rel="stylesheet" >
+
+	<!-- Include the compiled Ratchet JS -->
+	<script src="js/ratchet.js"></script>
+
+</head>
+<body>
+	<!-- Make sure all your bars are the first things in your <body> -->
+	<header class="bar bar-nav blue-nav">
+		<a href="#menu-popover" class="icon icon-bars pull-left"></a>
+		<a href="#" class="icon icon-search pull-right"></a>
+		<h1 class="title">Articles</h1>	
+	</header>
+	<div class="bar bar-standard bar-header-secondary">
+		<h3>travel</h3>
+	</div>
+	<!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
+	<div class="content">
+		<ul class="table-view">
+			<li class="table-view-cell-full media">
+				<div class="navigate-cell">
+					<a class="navigate article-title">
+						<div class="media-body">
+							Plan Your Roadtrip like a Pro
+							<p class="date">October 23, 2014</p>
+						</div>
+					</a>
+				</div>
+				<img class="article-image" src="images/articles-list/road_pic.png">
+				<ul class="table-view no-border">
+					<li class="table-view-cell-social media text-center">						
+						<span class="badge badge-inverted">
+							<span class="icon icon-hearth-small social-stat"></span> 89
+						</span>
+						<span class="badge badge-inverted">
+							<span class="icon icon-share-left social-stat"></span> 234
+						</span>
+						<span class="badge badge-inverted">
+							<span class="icon icon-chat-text social-stat"></span> 26
+						</span>
+					</li>
+				</ul>
+			</li>
+			<li class="table-view-cell-full media">
+				<div class="navigate-cell">
+					<a class="navigate article-title">
+						<div class="media-body">
+							Hidden Gem Westcoast Wineries
+							<p class="date">October 23, 2014</p>
+						</div>
+					</a>
+				</div>
+				<img class="article-image" src="images/articles-list/grapes_pic.png">
+				<ul class="table-view no-border">
+					<li class="table-view-cell-social media text-center">
+						<span class="badge badge-inverted">
+							<span class="icon icon-hearth-small social-stat"></span> 58
+						</span>
+						<span class="badge badge-inverted">
+							<span class="icon icon-share-left social-stat"></span> 327
+						</span>
+						<span class="badge badge-inverted">
+							<span class="icon icon-chat-small social-stat"></span> 54
+						</span>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div id="menu-popover" class="popover">
+		<ul class="table-view">
+			<li class="table-view-cell">Menu 1</li>
+			<li class="table-view-cell">Menu 2</li>
+			<li class="table-view-cell">Menu 3</li>
+			<li class="table-view-cell">Menu 4</li>
+		</ul>
+	</div>
+</body>
+</html>
