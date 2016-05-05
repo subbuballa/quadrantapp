@@ -93,13 +93,12 @@ catch(e){
 
 })
 .controller('DashDetailCtrl',function($scope,$stateParams,Quadrants,Goals,_,SQLliteDatabase){
-  //var quadrants = Quadrants.all();
-  SQLliteDatabase.initDB();
   var qId = $stateParams.quadrantId;
   var curQuadrant = Quadrants.get($stateParams.quadrantId);
   console.log(curQuadrant);
   $scope.goals = [];
   $scope.quadrant = [];
+  var goals = [];
    function getQuadrantData(){
       var quadrantData = [];
       var message = '';
@@ -111,7 +110,7 @@ catch(e){
           }
         });
         Goals.get(curQuadrant.id).then(function(result) {
-          var goals = result;
+          goals = result;
           angular.forEach(goals,function(goal,index){
           goal.quadrantClass = getCssClass(goal);
         });
@@ -122,6 +121,15 @@ catch(e){
           $scope.q4 = _.where(goals,{quadrantClass:'quadrant4'}).length;
         });
       return quadrantData;
+  }
+  $scope.filterGoals = function(quadrant) {
+    if(quadrant == 'all'){
+      $scope.goals = goals;
+    }
+    else{
+      var filteredGoals = angular.copy(goals);
+      $scope.goals = _.where(filteredGoals,{quadrantClass:quadrant});
+    }
   }
   function getCssClass(goal) {
     var isUrgent = goal.isUrgent == "true";

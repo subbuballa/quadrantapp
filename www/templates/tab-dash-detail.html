@@ -11,7 +11,7 @@
       <div class="head-profile dash-detail-header">
 			<ul class="table-view">
 				<li class="table-view-cell media text-center">
-					<div class="circle">
+					<div class="circle" ng-click="filterGoals('all')">
 						<!--<img src="images/profile/user_photo.png" class="user-photo" alt=""/>-->
             <span class="step">{{quadrant.total}}</span>
 					</div>
@@ -21,19 +21,19 @@
 				</li>
 				<li class="table-view-cell media text-center no-padding backdrop-background">
 					<section class="social-panel">
-						<div class="social-info backdrop-background-6">
+						<div class="social-info backdrop-background-6" ng-click="filterGoals('quadrant1')">
 							<h3>{{q1}}</h3>
 							<p>do it now</p>
 						</div>
-						<div class="social-info backdrop-background-5">
+						<div class="social-info backdrop-background-5" ng-click="filterGoals('quadrant2')">
 							<h3>{{q2}}</h3>
 							<p>can't wait</p>
 						</div>
-						<div class="social-info backdrop-background-4">
+						<div class="social-info backdrop-background-4" ng-click="filterGoals('quadrant3')">
 							<h3>{{q3}}</h3>
 							<p>can wait</p>
 						</div>
-						<div class="social-info">
+						<div class="social-info" ng-click="filterGoals('quadrant4')">
 							<h3>{{q4}}</h3>
 							<p>at your leasure</p>
 						</div>
