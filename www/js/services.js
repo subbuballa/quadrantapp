@@ -334,14 +334,13 @@ angular.module('starter.services', [])
 
             return deffered.promise;
         },
-        get: function (quadrantId) {
-            var goalsPerQuadrant = [];
-            for (var i = 0; i < goals.length; i++) {
-                if (goals[i].quadrantId === parseInt(quadrantId) && goals[i].isUrgent) {
-                    goalsPerQuadrant.push(goals[i]);
-                }
-            }
-            return goalsPerQuadrant;
+        get: function (qId) {
+            var deffered = $q.defer();
+             Database.getdata().then(function(result) {
+                 var goalsByQuadrant = _.where(fetchAll(result),{quadrantId:qId});
+                 deffered.resolve(goalsByQuadrant);
+             });
+            return deffered.promise;
         },
         hasGoals: function () {
             return goals.length > 0;

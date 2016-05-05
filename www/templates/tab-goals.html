@@ -1,4 +1,4 @@
-<ion-view view-title="Goals" class="view-with-bg">
+<ion-view view-title="Goals" class="view-with-bg goals">
     <ion-content class="view-content">
     <!--<div class="item item-divider"> 
         Goals
@@ -8,9 +8,16 @@
     </div>
        <ion-list ng-show="hasGoals">
             <ion-item class="item-remove-animate" ng-class="{ quadrant1:'q1', quadrant2: 'q2',quadrant3: 'q3', quadrant4: 'q4'}[goal.quadrantClass]" ng-repeat="goal in goals" type="item-text-wrap" href="#/tab/goals/{{goal.id}}">
-                <h2 class="dark" ng-class="getCssClass(goal)">{{goal.quadrantName}} - {{goal.description}}</h2>
-                <!--<span ng-show="goal.isUrgent=='true'" class="dark"><i class="icon ion-information-circled balanced"></i> Urgent</span>
-                <span ng-show="goal.isImportant=='true'" class="dark"><i class="icon ion-information-circled balanced"></i> Important</span>-->
+            <ul class="table-view">
+                <li class="table-view-cell media">
+                    <div class="media-body">
+                        <p>
+                            {{goal.quadrantName}} - {{goal.description}}
+                        </p>
+                    </div>
+                </li>
+            </ul>
+                <!--<h2 class="dark" ng-class="getCssClass(goal)">{{goal.quadrantName}} - {{goal.description}}</h2>-->
                 <ion-option-button class="button-balanced icon ion-trash-a" ng-click="deleteGoal(goal)"></ion-option-button>
             </ion-item>
     </ion-list>

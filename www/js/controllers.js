@@ -98,7 +98,7 @@ catch(e){
   var qId = $stateParams.quadrantId;
   var curQuadrant = Quadrants.get($stateParams.quadrantId);
   console.log(curQuadrant);
-  
+  $scope.goals = [];
   $scope.quadrant = [];
    function getQuadrantData(){
       var quadrantData = [];
@@ -106,8 +106,31 @@ catch(e){
       Goals.find(1)
         .then(function(result){
           getDataByQuadrant(result);
+          if(!result){
+            $scope.goals = result[qId];
+          }
+        });
+        Goals.get(curQuadrant.id).then(function(result) {
+          var goals = result;
+          angular.forEach(goals,function(goal,index){
+          goal.quadrantClass = getCssClass(goal);
+        });
+          $scope.goals = _.sortBy(goals,'quadrantClass');
+          $scope.q1 = _.where(goals,{quadrantClass:'quadrant1'}).length;
+          $scope.q2 = _.where(goals,{quadrantClass:'quadrant2'}).length;
+          $scope.q3 = _.where(goals,{quadrantClass:'quadrant3'}).length;
+          $scope.q4 = _.where(goals,{quadrantClass:'quadrant4'}).length;
         });
       return quadrantData;
+  }
+  function getCssClass(goal) {
+    var isUrgent = goal.isUrgent == "true";
+    var isImportant = goal.isImportant == "true";
+    if(isUrgent&&isImportant) return 'quadrant1';
+    if(isUrgent&&!isImportant) return 'quadrant2';
+    if(!isUrgent&&isImportant) return 'quadrant3';
+    if(!isUrgent&&!isImportant) return 'quadrant4';
+    return '';
   }
   function getOptions(title){
     var options = {  

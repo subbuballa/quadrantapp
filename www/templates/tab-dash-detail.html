@@ -1,12 +1,61 @@
-<ion-view view-title="Detail" class="view-with-bg">
+<ion-view view-title="Detail" class="view-with-bg ">
   <ion-content class="view-content">
-      <div class="center margin-top balanced">{{quadrant.name}}</div>
+      <!--<div class="center margin-top balanced">{{quadrant.name}}</div>
       <div>
         <nvd3 class="" options="quadrant.options" data="quadrant.data"></nvd3>
       </div>
         <div class="center balanced">Active goals</div>
       <div>
         <div class="circle"><span class="step">{{quadrant.total}}</span></div>
+      </div>-->
+      <div class="head-profile dash-detail-header">
+			<ul class="table-view">
+				<li class="table-view-cell media text-center">
+					<div class="circle">
+						<!--<img src="images/profile/user_photo.png" class="user-photo" alt=""/>-->
+            <span class="step">{{quadrant.total}}</span>
+					</div>
+					<h4>{{quadrant.name}}</h4>
+					<!--<a href="#" class="button button-small button-balanced btn-outlined">Add Goal</a>-->
+          <br/>
+				</li>
+				<li class="table-view-cell media text-center no-padding backdrop-background">
+					<section class="social-panel">
+						<div class="social-info backdrop-background-6">
+							<h3>{{q1}}</h3>
+							<p>do it now</p>
+						</div>
+						<div class="social-info backdrop-background-5">
+							<h3>{{q2}}</h3>
+							<p>can't wait</p>
+						</div>
+						<div class="social-info backdrop-background-4">
+							<h3>{{q3}}</h3>
+							<p>can wait</p>
+						</div>
+						<div class="social-info">
+							<h3>{{q4}}</h3>
+							<p>at your leasure</p>
+						</div>
+					</section>
+				</li>
+			</ul>
+		</div>
+    <ion-list>
+      <div class="dash-detail-goals">
+        <ion-item class="item-remove-animate" ng-class="{ quadrant1:'q1', quadrant2: 'q2',quadrant3: 'q3', quadrant4: 'q4'}[goal.quadrantClass]" ng-repeat="goal in goals" type="item-text-wrap" href="#">
+            <ul class="table-view">
+                <li class="table-view-cell media">
+                    <div class="media-body">
+                        <p>
+                            {{goal.description}}
+                        </p>
+                    </div>
+                </li>
+            </ul>
+            <ion-option-button class="button-balanced icon ion-trash-a" ng-click="deleteGoal(goal)"></ion-option-button>
+        </ion-item>
       </div>
+    </ion-list>
   </ion-content>
 </ion-view>
